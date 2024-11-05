@@ -8,8 +8,8 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <nav className="bg-transparent">
-      <div className="container mx-auto px-8 py-4 flex items-center justify-between">
+    <nav className="bg-transparent ">
+      <div className="px-8 py-4 flex items-center justify-between">
         {/* Logo */}
         <div>
           <img src={Logo} alt="Logo indonesianature" className="w-40 h-7" />

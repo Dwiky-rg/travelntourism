@@ -4,7 +4,7 @@ import Batik from "../src/assets/Batik.png";
 
 const Home = () => {
   return (
-    <section className="relative min-h-[85vh] flex flex-col items-center text-white px-10 lg:px-20">
+    <section className="relative min-h-screen flex flex-col items-center text-white px-8 py-2">
       {/* Teks Salam */}
       <h1 className="text-2xl lg:text-4xl font-bold mt-16 lg:mt-28 text-center">
         Hi, Where Do You Want To Go On Holiday?
@@ -29,14 +29,14 @@ const Home = () => {
       </div>
 
       {/* Teks Eksplorasi di sebelah kiri */}
-      <div className="w-full lg:w-auto lg:absolute lg:left-36 lg:top-1/2 text-left mt-12">
+      <div className="w-full lg:w-auto lg:absolute lg:left-36 lg:top-1/2 text-left mt-10">
         <h2 className="text-5xl lg:text-7xl tracking-[0.25em] font-thin">
           Explore <br /> Indonesia <br /> with Us
         </h2>
       </div>
 
       {/* Teks kecil di bagian bawah, seperti footer */}
-      <p className="absolute bottom-0 w-full text-sm text-white text-center px-8">
+      <p className="absolute bottom-24 w-full text-sm text-white text-center px-8">
         Experience limitiess travel possibilities with IndonesiaNature
         Innovative Flight booking platform Start journey today!
       </p>
