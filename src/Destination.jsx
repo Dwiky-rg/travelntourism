@@ -41,7 +41,7 @@ function Destination() {
       {/* Teks besar dan teks paragraf di bawah logo */}
       <div className="mt-16 md:mt-20 px-4 md:px-12">
         <h1 className="text-5xl md:text-7xl lg:leading-tight">
-          Explore Our Popular <br /> Destination
+          Explore Our <br /> Popular Destination
         </h1>
         <p className="text-lg opacity-50">
           Find your next escape whether it's a cultural city break, a nature
