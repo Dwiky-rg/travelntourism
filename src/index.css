@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  scroll-behavior: smooth;
+}
+
+.navbar-transparent {
+  background-color: transparent;
+}
+
+.btn {
+  background-color: #00b7ff; /* Ganti dengan warna solid yang Anda inginkan */
+  box-shadow: 0px 4.42184px 107.23px rgba(255, 86, 246, 0.51);
+  color: white; /* Pastikan teks tombol terlihat */
+}
+
+.btn:hover {
+  background-color: transparent;
+  color: #00b7ff;
+  border: white;
+}
+
+@layer base {
+  .section {
+    @apply py-8 lg:py-24 lg:h-screen flex items-center;
+  }
+}
+
+/* body {
+    @apply font-secondary text-lg leading-8 text-white;
+  } */
+/* .h2 {
+    @apply font-primary text-[32px] mb-6 tracking-[10%] uppercase;
+  }
+  .h3 {
+    @apply font-primary font-semibold text-[26px] mb-6 leading-[46px];
+  }
+  .btn {
+    @apply rounded-full font-primary text-white font-medium;
+  }
+  .btn-sm {
+    @apply h-[48px] px-6 text-sm;
+  }
+  .btn-lg {
+    @apply h-[56px] px-10 text-base;
+  }
+  .btn-link {
+    @apply text-base;
+  } */
