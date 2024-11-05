@@ -111,7 +111,7 @@ function Destination() {
           <div key={destination.id} className="flex justify-center px-2">
             {" "}
             {/* Adjusted padding */}
-            <div className="relative w-full max-w-[350px] h-[320px] lg:h-[400px] bg-white rounded-lg shadow-lg overflow-hidden border-2 border-[#FF994B] mt-6">
+            <div className="relative w-full max-w-[350px] h-[350px] lg:h-[400px] bg-white rounded-lg shadow-lg overflow-hidden border-2 border-[#FF994B] mt-6">
               {" "}
               {/* Using max-width */}
               <img
