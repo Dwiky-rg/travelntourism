@@ -4,8 +4,6 @@ export default {
   theme: {
     fontFamily: {
       primary: "Inter",
-      secondary: "Rajdhani",
-      tertiary: "Aldrich",
     },
     container: {
       padding: {

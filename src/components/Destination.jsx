@@ -97,7 +97,7 @@ function Destination() {
         <img src={Logo} alt="Logo indonesianature" className="w-40 h-7" />
       </div>
       <div className="mt-20 px-4 md:px-12">
-        <h1 className="text-5xl md:text-7xl lg:leading-tight">
+        <h1 className="text-5xl font-primary font-normal md:text-7xl lg:leading-tight">
           Explore Our <br /> Popular Destination
         </h1>
         <p className="text-lg opacity-50">

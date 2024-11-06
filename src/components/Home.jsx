@@ -30,8 +30,8 @@ const Home = () => {
 
       {/* Teks Eksplorasi di sebelah kiri */}
       <div className="w-full lg:w-auto lg:absolute lg:left-36 lg:top-1/2 text-left mt-10">
-        <h2 className="text-5xl lg:text-7xl tracking-[0.25em] font-thin">
-          Explore <br /> Indonesia <br /> with Us
+        <h2 className="text-5xl lg:text-7xl font-primary tracking-[13px] lg:tracking-[25px] font-thin">
+          Explore <br /> Indonesia <br /> With Us
         </h2>
       </div>
 
