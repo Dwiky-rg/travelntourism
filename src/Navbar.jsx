@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FaChevronDown, FaBars, FaTimes } from "react-icons/fa"; // Import ikon dropdown dan hamburger
+import { FaChevronDown, FaTimes } from "react-icons/fa";
 import { HiBars3BottomRight } from "react-icons/hi2";
 import Logo from "../src/assets/indonesianature.png";
 
@@ -7,139 +7,127 @@ const Navbar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  const navItems = [
+    { name: "Home", href: "#home" },
+    { name: "Destination", href: "#destination" },
+    { name: "Experience", href: "#experience" },
+  ];
+
+  const bookingItems = [
+    { name: "Pesawat", href: "#pesawat" },
+    { name: "Hotel", href: "#hotel" },
+  ];
+
   return (
-    <nav className="bg-transparent ">
+    <nav className="bg-transparent relative z-50">
       <div className="px-8 py-4 flex items-center justify-between">
-        {/* Logo */}
         <div>
           <img src={Logo} alt="Logo indonesianature" className="w-40 h-7" />
         </div>
 
+        {/* Menu Desktop */}
+        <div className="hidden md:flex items-center space-x-6">
+          {navItems.map((item) => (
+            <a
+              key={item.name}
+              href={item.href}
+              className="text-white hover:text-blue-500 transition-all duration-300"
+            >
+              {item.name}
+            </a>
+          ))}
+
+          {/* Dropdown Desktop */}
+          <div className="relative">
+            <button
+              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+              className="text-white hover:text-blue-500 flex items-center transition-all duration-300"
+            >
+              Booking <FaChevronDown className="ml-2" />
+            </button>
+            {isDropdownOpen && (
+              <div className="absolute bg-gray-700 mt-2 rounded shadow-lg">
+                {bookingItems.map((item) => (
+                  <a
+                    key={item.name}
+                    href={item.href}
+                    className="block px-4 py-2 text-white hover:bg-blue-500 transition-all duration-300"
+                  >
+                    {item.name}
+                  </a>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* Button Login dan Register di Desktop */}
+        <div className="hidden md:flex space-x-4">
+          <button className="text-blue-500 border border-blue-500 px-4 py-1 rounded hover:bg-blue-500 hover:text-white drop-shadow-lg transition-all duration-300">
+            Login
+          </button>
+          <button className="text-white bg-blue-500 px-4 py-1 rounded hover:bg-blue-600 drop-shadow-lg transition-all duration-300 hover:bg-transparent hover:text-blue-500 hover:border hover:border-blue-500 hover:backdrop-blur-sm">
+            Register
+          </button>
+        </div>
+
         {/* Icon Hamburger untuk mobile */}
-        <div className="md:hidden">
+        <div className="md:hidden cursor-pointer z-50">
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="text-white text-2xl focus:outline-none"
+            className="text-white text-2xl focus:outline-none mt-3"
           >
             {isMenuOpen ? <FaTimes /> : <HiBars3BottomRight />}
           </button>
         </div>
-
-        {/* Menu Desktop */}
-        <div className="hidden md:flex space-x-8">
-          <a
-            href="#home"
-            className="text-white hover:text-blue-500 drop-shadow-lg"
-          >
-            Home
-          </a>
-          <a
-            href="#destination"
-            className="text-white hover:text-blue-500 drop-shadow-lg"
-          >
-            Destination
-          </a>
-          <a
-            href="#experience"
-            className="text-white hover:text-blue-500 drop-shadow-lg"
-          >
-            Experience
-          </a>
-
-          {/* Dropdown */}
-          <div className="relative">
-            <button
-              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-              className="flex items-center text-white hover:text-blue-500 focus:outline-none drop-shadow-lg"
-            >
-              Booking <FaChevronDown className="ml-2 mt-1" />
-            </button>
-            {isDropdownOpen && (
-              <div className="absolute left-0 mt-2 w-40 bg-transparent rounded shadow-lg">
-                <a
-                  href="#pesawat"
-                  className="block px-4 py-2 text-white hover:bg-blue-500"
-                >
-                  Pesawat
-                </a>
-                <a
-                  href="#hotel"
-                  className="block px-4 py-2 text-white hover:bg-blue-500"
-                >
-                  Hotel
-                </a>
-              </div>
-            )}
-          </div>
-        </div>
-
-        {/* Buttons Desktop */}
-        <div className="hidden md:flex space-x-4">
-          <button className="text-blue-500 border border-blue-500 px-7 py-1 rounded hover:bg-blue-500 hover:text-white drop-shadow-lg">
-            Login
-          </button>
-          <button className="text-white bg-blue-500 px-4 py-1 rounded hover:bg-blue-600 drop-shadow-lg">
-            Register
-          </button>
-        </div>
       </div>
 
-      {/* Menu Mobile */}
       {isMenuOpen && (
-        <div className="md:hidden bg-gray-800">
-          <a
-            href="#home"
-            className="block px-4 py-2 text-white hover:bg-blue-500"
-          >
-            Home
-          </a>
-          <a
-            href="#destination"
-            className="block px-4 py-2 text-white hover:bg-blue-500"
-          >
-            Destination
-          </a>
-          <a
-            href="#experience"
-            className="block px-4 py-2 text-white hover:bg-blue-500"
-          >
-            Experience
-          </a>
+        <div className="md:hidden fixed inset-x-0 top-0 rounded-xl bg-black bg-opacity-50 backdrop-blur-sm z-40 pt-5 gap-y-8 cursor-pointer max-h-screen overflow-y-auto m-3">
+          <div className="max-w-screen-sm mx-auto rounded-lg p-4">
+            {navItems.map((item) => (
+              <a
+                key={item.name}
+                href={item.href}
+                className="block px-4 py-2 text-white hover:text-[26px] transition-all duration-300 relative after:content-[''] after:absolute after:left-4 after:right-4 after:bottom-[-2px] after:h-[2px] after:bg-white after:scale-x-0 hover:after:scale-x-100 after:origin-left after:transition-transform after:duration-300"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                {item.name}
+              </a>
+            ))}
 
-          {/* Dropdown pada Mobile */}
-          <div className="relative">
-            <button
-              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-              className="block w-full text-left px-4 py-2 text-white hover:bg-blue-500 focus:outline-none"
-            >
-              Booking <FaChevronDown className="inline ml-2" />
-            </button>
-            {isDropdownOpen && (
-              <div className="bg-gray-700">
-                <a
-                  href="#pesawat"
-                  className="block px-4 py-2 text-white hover:bg-blue-500"
-                >
-                  Pesawat
-                </a>
-                <a
-                  href="#hotel"
-                  className="block px-4 py-2 text-white hover:bg-blue-500"
-                >
-                  Hotel
-                </a>
-              </div>
-            )}
-          </div>
+            {/* Dropdown Mobile */}
+            <div className="relative">
+              <button
+                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                className="block w-full text-left px-4 py-2 text-white hover:text-[28px] focus:outline-none transition-all duration-300"
+              >
+                Booking <FaChevronDown className="inline ml-2" />
+              </button>
+              {isDropdownOpen && (
+                <div>
+                  {bookingItems.map((item) => (
+                    <a
+                      key={item.name}
+                      href={item.href}
+                      className="block px-8 py-2 text-white transition-all duration-300 relative after:content-[''] after:absolute after:left-8 after:right-8 after:bottom-[-2px] after:h-[2px] after:bg-white after:scale-x-0 hover:after:scale-x-100 after:origin-left after:transition-transform after:duration-300"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      {item.name}
+                    </a>
+                  ))}
+                </div>
+              )}
+            </div>
 
-          {/* Buttons untuk Mobile */}
-          <div className="flex flex-col space-y-2 mt-4 px-4 pb-4">
-            <button className="text-blue-500 border border-blue-500 px-4 py-1 rounded hover:bg-blue-500 hover:text-white drop-shadow-lg">
-              Login
-            </button>
-            <button className="text-white bg-blue-500 px-4 py-1 rounded hover:bg-blue-600 drop-shadow-lg">
-              Register
-            </button>
+            <div className="flex flex-col space-y-2 mt-4 px-4 pb-4">
+              <button className="text-blue-500 border border-blue-500 px-4 py-1 rounded hover:bg-blue-500 hover:text-white drop-shadow-lg transition-all duration-300">
+                Login
+              </button>
+              <button className="text-white bg-blue-500 px-4 py-1 rounded drop-shadow-lg transition-all duration-300 hover:bg-transparent hover:text-blue-500 hover:border hover:border-blue-500 hover:backdrop-blur-sm">
+                Register
+              </button>
+            </div>
           </div>
         </div>
       )}

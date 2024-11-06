@@ -6,12 +6,12 @@ import BackgroundImage from "../src/assets/Home.jpg"; // Pastikan path gambar be
 const Hero = () => {
   return (
     <div
-      className="h-screen bg-cover bg-center bg-no-repeat"
+      className="min-h-screen bg-cover bg-center bg-no-repeat relative"
       style={{ backgroundImage: `url(${BackgroundImage})` }}
       id="home"
     >
       {/* Overlay */}
-      <div className="absolute inset-0 bg-black opacity-50"></div>
+      <div className="absolute inset-0 bg-black opacity-50 pointer-events-none"></div>
 
       {/* Navbar */}
       <Navbar />
