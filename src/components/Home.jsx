@@ -42,7 +42,7 @@ const Home = () => {
       </div>
 
       {/* Teks kecil di bagian bawah, seperti footer */}
-      <p className="absolute bottom-10 w-full text-sm text-white text-center px-8">
+      <p className="absolute bottom-20 md:bottom-10 w-full text-sm text-white text-center px-8">
         Experience limitiess travel possibilities with IndonesiaNature
         Innovative Flight booking platform Start journey today!
       </p>
