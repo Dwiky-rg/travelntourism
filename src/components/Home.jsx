@@ -10,8 +10,9 @@ const Home = () => {
       style={{ backgroundImage: `url(${BackgroundImage})` }}
       id="home"
     >
+      <div className="absolute inset-0 bg-black opacity-30"></div>
       {/* Teks Salam */}
-      <h1 className="text-2xl lg:text-4xl font-bold mt-36 lg:mt-44 text-center">
+      <h1 className="text-2xl text-white lg:text-4xl font-bold mt-36 lg:mt-44 text-center">
         Hi, Where Do You Want To Go On Holiday?
       </h1>
 

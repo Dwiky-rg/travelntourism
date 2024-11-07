@@ -10,18 +10,7 @@ import Card2 from "../assets/Bali.jpg";
 import Card3 from "../assets/Raja Ampat.jpeg";
 import Card4 from "../assets/Lombok.jpeg";
 
-const scrollToHome = () => {
-  const homeSection = document.getElementById("home");
-  if (homeSection) {
-    window.scrollTo({
-      top: homeSection.offsetTop,
-      behavior: "smooth",
-    });
-  }
-};
-
 const settings = {
-  dots: true,
   infinite: true,
   speed: 500,
   slidesToShow: 4,
@@ -64,7 +53,7 @@ function NextArrow(props) {
   const { onClick } = props;
   return (
     <button
-      className="absolute top-[-15px] lg:top-[-40px] right-3 lg:right-8 p-2 bg-[#FF994B] rounded-full text-white shadow-lg hover:bg-[#e98840]"
+      className="absolute top-[-25px] lg:top-[-40px] right-3 lg:right-8 p-2 bg-[#FF994B] rounded-full text-white shadow-lg hover:bg-[#e98840]"
       onClick={onClick}
     >
       <FaChevronRight />
@@ -76,7 +65,7 @@ function PrevArrow(props) {
   const { onClick } = props;
   return (
     <button
-      className="absolute top-[-15px] lg:top-[-40px]  right-14 lg:right-20 p-2 bg-[#FF994B] rounded-full text-white shadow-lg hover:bg-[#e98840]"
+      className="absolute top-[-25px] lg:top-[-40px]  right-14 lg:right-20 p-2 bg-[#FF994B] rounded-full text-white shadow-lg hover:bg-[#e98840]"
       onClick={onClick}
     >
       <FaChevronLeft />
@@ -90,14 +79,8 @@ function Destination() {
       className="relative min-h-screen flex flex-col text-black px-8 py-2"
       id="destination"
     >
-      <div
-        className="absolute top-5 left-8 cursor-pointer"
-        onClick={scrollToHome}
-      >
-        <img src={Logo} alt="Logo indonesianature" className="w-40 h-6" />
-      </div>
       <div className="mt-20 px-4 md:px-12">
-        <h1 className="text-5xl font-primary font-normal md:text-7xl lg:leading-tight">
+        <h1 className="text-5xl font-primary font-normal md:text-7xl md:leading-tight">
           Explore Our <br /> Popular Destination
         </h1>
         <p className="text-lg opacity-50">
@@ -109,9 +92,8 @@ function Destination() {
       <Slider {...settings} className="mt-8">
         {destinations.map((destination) => (
           <div key={destination.id} className="flex justify-center px-2">
-            {" "}
             {/* Adjusted padding */}
-            <div className="relative w-full max-w-[350px] h-[350px] lg:h-[400px] bg-white rounded-lg shadow-lg overflow-hidden border-2 border-[#FF994B] mt-6">
+            <div className="relative w-[300px] h-[350px] lg:h-[400px] bg-white rounded-lg shadow-lg overflow-hidden border-2 border-[#FF994B] m-4 mx-auto">
               {" "}
               {/* Using max-width */}
               <img

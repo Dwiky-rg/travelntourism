@@ -3,30 +3,15 @@
 @tailwind utilities;
 
 * {
+  font-family: "Inter", sans-serif;
   scroll-behavior: smooth;
 }
 
-.navbar-transparent {
-  background-color: transparent;
-}
-
-.btn {
-  background-color: #00b7ff; /* Ganti dengan warna solid yang Anda inginkan */
-  box-shadow: 0px 4.42184px 107.23px rgba(255, 86, 246, 0.51);
-  color: white; /* Pastikan teks tombol terlihat */
-}
-
-.btn:hover {
-  background-color: transparent;
-  color: #00b7ff;
-  border: white;
-}
-
-@layer base {
+/* @layer base {
   .section {
     @apply py-8 lg:py-24 lg:h-screen flex items-center;
   }
-}
+} */
 
 /* body {
     @apply font-secondary text-lg leading-8 text-white;

@@ -4,6 +4,7 @@ export default {
   theme: {
     fontFamily: {
       primary: "Inter",
+      secondary: "Island Moments",
     },
     container: {
       padding: {
