@@ -1,12 +1,17 @@
 import React from "react";
 import { FaSearch } from "react-icons/fa"; // Import ikon search
 import Batik from "../assets/Batik.png";
+import BackgroundImage from "../assets/Home.jpg";
 
 const Home = () => {
   return (
-    <section className="relative min-h-[85vh] flex flex-col items-center text-white px-8 py-2 overflow-hidden">
+    <section
+      className="relative min-h-screen bg-cover bg-center flex flex-col items-center text-white px-8 py-2 overflow-hidden"
+      style={{ backgroundImage: `url(${BackgroundImage})` }}
+      id="home"
+    >
       {/* Teks Salam */}
-      <h1 className="text-2xl lg:text-4xl font-bold mt-16 lg:mt-28 text-center">
+      <h1 className="text-2xl lg:text-4xl font-bold mt-36 lg:mt-44 text-center">
         Hi, Where Do You Want To Go On Holiday?
       </h1>
 
@@ -36,7 +41,7 @@ const Home = () => {
       </div>
 
       {/* Teks kecil di bagian bawah, seperti footer */}
-      <p className="absolute bottom-0 w-full text-sm text-white text-center px-8">
+      <p className="absolute bottom-10 w-full text-sm text-white text-center px-8">
         Experience limitiess travel possibilities with IndonesiaNature
         Innovative Flight booking platform Start journey today!
       </p>

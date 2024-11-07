@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FaChevronDown, FaTimes } from "react-icons/fa";
 import { HiBars3BottomRight } from "react-icons/hi2";
 import Logo from "../assets/indonesianature.png";
@@ -7,6 +7,21 @@ import { Link } from "react-router-dom";
 const Navbar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  // Mengatur efek blur berdasarkan posisi scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      const homeSection = document.getElementById("home");
+      if (homeSection) {
+        const homeBottom = homeSection.getBoundingClientRect().bottom;
+        setIsScrolled(homeBottom <= 0); // Blur ketika melewati batas Home section
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const navItems = [
     { name: "Home", href: "#home" },
@@ -20,7 +35,13 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="bg-transparent relative z-50">
+    <nav
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+        isScrolled
+          ? "bg-black bg-opacity-50 backdrop-blur-md"
+          : "bg-transparent"
+      }`}
+    >
       <div className="px-8 py-4 flex items-center justify-between">
         <div>
           <img src={Logo} alt="Logo indonesianature" className="w-40 h-7" />
@@ -51,7 +72,7 @@ const Navbar = () => {
                 {bookingItems.map((item) => (
                   <Link
                     key={item.name}
-                    to={item.href === "#pesawat" ? "/flight" : "/hotel"} // Menggunakan Link dan menambahkan path yang sesuai
+                    to={item.href === "#pesawat" ? "/flight" : "/hotel"}
                     className="block px-4 py-2 text-white hover:bg-blue-500 transition-all duration-300"
                   >
                     {item.name}
@@ -62,9 +83,8 @@ const Navbar = () => {
           </div>
         </div>
 
-        {/* Button Login dan Register di Desktop */}
+        {/* Tombol Login dan Register di Desktop */}
         <div className="hidden md:flex space-x-4">
-          {/* Menggunakan Link untuk navigasi */}
           <Link
             to="/login"
             className="text-blue-500 border border-blue-500 px-4 py-1 rounded hover:bg-blue-500 hover:text-white drop-shadow-lg transition-all duration-300"
@@ -72,7 +92,7 @@ const Navbar = () => {
             Login
           </Link>
           <Link
-            to="/register" // Halaman Register
+            to="/register"
             className="text-white bg-blue-500 px-4 py-1 rounded hover:bg-blue-600 drop-shadow-lg transition-all duration-300 hover:bg-transparent hover:text-blue-500 hover:border hover:border-blue-500 hover:backdrop-blur-sm"
           >
             Register
@@ -117,7 +137,7 @@ const Navbar = () => {
                   {bookingItems.map((item) => (
                     <Link
                       key={item.name}
-                      to={item.href === "#pesawat" ? "/flight" : "/hotel"} // Menggunakan Link dengan path yang sesuai
+                      to={item.href === "#pesawat" ? "/flight" : "/hotel"}
                       className="block px-8 py-2 text-white transition-all duration-300 relative after:content-[''] after:absolute after:left-8 after:right-8 after:bottom-[-2px] after:h-[2px] after:bg-white after:scale-x-0 hover:after:scale-x-100 after:origin-left after:transition-transform after:duration-300"
                       onClick={() => setIsMenuOpen(false)}
                     >

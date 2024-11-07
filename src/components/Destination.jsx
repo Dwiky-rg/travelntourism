@@ -94,7 +94,7 @@ function Destination() {
         className="absolute top-5 left-8 cursor-pointer"
         onClick={scrollToHome}
       >
-        <img src={Logo} alt="Logo indonesianature" className="w-40 h-7" />
+        <img src={Logo} alt="Logo indonesianature" className="w-40 h-6" />
       </div>
       <div className="mt-20 px-4 md:px-12">
         <h1 className="text-5xl font-primary font-normal md:text-7xl lg:leading-tight">
