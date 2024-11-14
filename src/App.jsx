@@ -1,31 +1,35 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom"; // Untuk routing
-import UserDashboard from "./pages/UserDashboard"; // Halaman Dashboard User
-import AdminDashboard from "./pages/AdminDashboard"; // Halaman Dashboard Admin
-import UserLayout from "./layouts/UserLayout"; // Layout untuk Dashboard User
-import AdminLayout from "./layouts/AdminLayout"; // Layout untuk Dashboard Admin
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import UserDashboard from "./pages/UserDashboard";
+import UserLayout from "./layouts/UserLayout";
+import AdminLayout from "./layouts/AdminLayout";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Hotel from "./pages/Hotel";
 import Flight from "./pages/Flight";
+import AdminDashboard from "./pages/AdminDashboard";
+import AddFlightForm from "./components/admin/AddFlightForm"; // Import AddFlightForm
+import AddHotelForm from "./components/admin/AddHotelForm";
 
 function App() {
   return (
     <Router>
       <Routes>
         {/* Halaman Dashboard User */}
-        <Route path="/" element={<UserLayout />}>
-          <Route index element={<UserDashboard />} />{" "}
-          {/* Home page menggunakan DashboardUser */}
-        </Route>
-
-        <Route path="/user" element={<UserLayout />}>
-          <Route index element={<UserDashboard />} />
-        </Route>
+        <Route
+          path="/"
+          element={
+            <UserLayout>
+              <UserDashboard />
+            </UserLayout>
+          }
+        />
 
         {/* Halaman Dashboard Admin */}
         <Route path="/admin" element={<AdminLayout />}>
-          <Route index element={<AdminDashboard />} />
+          <Route path="dashboard" element={<AdminDashboard />} />
+          <Route path="add-flight" element={<AddFlightForm />} />
+          <Route path="add-hotel" element={<AddHotelForm />} />
         </Route>
 
         {/* Route untuk halaman Login */}
@@ -35,10 +39,24 @@ function App() {
         <Route path="/register" element={<Register />} />
 
         {/* Route untuk halaman Flight */}
-        <Route path="/flight" element={<Flight />} />
+        <Route
+          path="/flight"
+          element={
+            <UserLayout>
+              <Flight />
+            </UserLayout>
+          }
+        />
 
         {/* Route untuk halaman Hotel */}
-        <Route path="/hotel" element={<Hotel />} />
+        <Route
+          path="/hotel"
+          element={
+            <UserLayout>
+              <Hotel />
+            </UserLayout>
+          }
+        />
       </Routes>
     </Router>
   );

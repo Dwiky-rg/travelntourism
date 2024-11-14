@@ -1,5 +1,6 @@
 import React from "react";
 import BackgroundImage from "../assets/Experience.jpg";
+import Footer from "./Footer";
 
 const reviews = [
   {
@@ -67,7 +68,7 @@ function Experience() {
       </div>
 
       {/* Review Cards */}
-      <div className="mt-10 grid gap-14 grid-cols-1 md:grid-cols-3 px-4 md:px-12">
+      <div className="mt-8 mb-2 grid gap-y-5 md:gap-14 grid-cols-1 md:grid-cols-3 px-4 md:px-12">
         {reviews.map((review) => (
           <div
             key={review.id}
@@ -91,6 +92,7 @@ function Experience() {
           </div>
         ))}
       </div>
+      <Footer />
     </section>
   );
 }

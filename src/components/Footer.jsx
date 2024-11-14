@@ -1,11 +1,14 @@
 import React from "react";
+import { FaArrowUp } from "react-icons/fa";
 
 function Footer() {
   return (
-    <footer className="relative min-h-[80px] bg-transparent bg-cover bg-center flex items-center justify-center text-white py-4">
-      <p className="text-center text-sm opacity-75">
-        Hak Cipta © [2024] Indonesianature. Semua Hak Dilindungi.
-      </p>
+    <footer className="bg-transparent text-white py-4 relative">
+      <div className="container mx-auto flex justify-center">
+        <p className="text-sm text-center opacity-75">
+          © 2024 Indonesianature. All Rights Reserved.
+        </p>
+      </div>
     </footer>
   );
 }

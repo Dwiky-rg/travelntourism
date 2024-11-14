@@ -1,15 +1,14 @@
 import React from "react";
-import Sidebar from "../components/AdminSidebar"; // Sidebar untuk admin
-import { Outlet } from "react-router-dom"; // Untuk rendering komponen anak
+import { Outlet } from "react-router-dom"; // Import Outlet dari react-router-dom
+import Sidebar from "../components/AdminSidebar";
 
 const AdminLayout = () => {
   return (
-    <div className="flex">
-      <Sidebar /> {/* Sidebar untuk admin */}
-      <div className="flex-1">
-        <Outlet />{" "}
-        {/* Ini untuk merender halaman anak seperti DashboardAdmin */}
-      </div>
+    <div className="flex min-h-screen">
+      <Sidebar className="w-64" />
+      <main className="flex-1 p-6 bg-[#041E31]">
+        <Outlet />
+      </main>
     </div>
   );
 };

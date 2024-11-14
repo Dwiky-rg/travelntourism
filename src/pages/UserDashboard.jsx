@@ -1,16 +1,16 @@
 import React from "react";
-import UserLayout from "../layouts/UserLayout";
 import Destination from "../components/Destination"; // Import Destination Section
+import Home from "../components/Home";
+import Experience from "../components/Experience";
 
-const DashboardUser = () => {
+const UserDashboard = () => {
   return (
-    <UserLayout>
-      {/* Hero, Destination, and Experience sections */}
-      <section className="px-8 py-16">
-        <Destination />
-      </section>
-    </UserLayout>
+    <>
+      <Home />
+      <Destination />
+      <Experience />
+    </>
   );
 };
 
-export default DashboardUser;
+export default UserDashboard;
