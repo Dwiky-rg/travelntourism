@@ -68,12 +68,12 @@ const Sidebar = () => {
           onClick={() => handleMenuClick("/admin/dashboard")} // Menandai Dashboard sebagai aktif
         />
         <NavItem
-          to="/admin/profile"
+          to="/admin/user-data"
           icon={FaUser}
-          label="User Data"
+          label="User"
           collapsed={collapsed}
-          isActive={activeMenu === "/admin/profile"}
-          onClick={() => handleMenuClick("/admin/profile")} // Menandai Profile sebagai aktif
+          isActive={activeMenu === "/admin/user-data"}
+          onClick={() => handleMenuClick("/admin/user-data")} // Menandai Profile sebagai aktif
         />
         <NavItem
           to="/admin/add-flight"
@@ -92,7 +92,7 @@ const Sidebar = () => {
           onClick={() => handleMenuClick("/admin/add-hotel")} // Menandai Add Flight sebagai aktif
         />
         <NavItem
-          to="/logout"
+          to="/"
           icon={FaSignOutAlt}
           label="Logout"
           collapsed={collapsed}

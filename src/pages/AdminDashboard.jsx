@@ -21,7 +21,7 @@ const AdminDashboard = () => {
             <GiCommercialAirplane className="text-6xl  bg-[#ffca28] p-2 rounded-xl" />
           </div>
           <div>
-            <h2 className="text-lg ">Total Flight Orders</h2>
+            <h2 className="text-lg ">Total Flight</h2>
             <p className="text-3xl font-bold">6540</p>
           </div>
         </div>
@@ -30,7 +30,7 @@ const AdminDashboard = () => {
             <FaHotel className="text-6xl bg-[#4dd0e1] p-2 rounded-xl" />
           </div>
           <div>
-            <h2 className="text-lg ">Total Hotel Orders</h2>
+            <h2 className="text-lg ">Total Hotel</h2>
             <p className="text-3xl font-bold">6540</p>
           </div>
         </div>

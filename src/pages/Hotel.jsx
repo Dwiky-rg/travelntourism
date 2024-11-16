@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { FaCalendarAlt, FaMoon, FaUser } from "react-icons/fa";
+import { FaCalendarAlt, FaMoon, FaUser, FaTimes } from "react-icons/fa";
 import { FaLocationDot } from "react-icons/fa6";
 import { SlLocationPin } from "react-icons/sl";
 import { IoStar } from "react-icons/io5";
 import { MdLocalHotel } from "react-icons/md";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import image from "../assets/Hotel.jpg";
+import ModalHotel from "../modal/ModalHotel";
 
 const card = [
   {
@@ -14,47 +16,7 @@ const card = [
     rating: 4.7,
     reviews: 2578,
     price: "1.232.353",
-    imageUrl: "https://placehold.co/300x200",
-  },
-  {
-    name: "The Orient Jakarta Hotel",
-    location: "Jakarta",
-    rating: 4.8,
-    reviews: 1236,
-    price: "855.233",
-    imageUrl: "https://placehold.co/300x200",
-  },
-  {
-    name: "Daun Bali Seminyak Hotel",
-    location: "Bali",
-    rating: 4.7,
-    reviews: 1356,
-    price: "1.329.559",
-    imageUrl: "https://placehold.co/300x200",
-  },
-  {
-    name: "The Apurva Kempinski Bali",
-    location: "Bali",
-    rating: 4.9,
-    reviews: 985,
-    price: "743.801",
-    imageUrl: "https://placehold.co/300x200",
-  },
-  {
-    name: "Bumi Surabaya City Resort",
-    location: "Surabaya",
-    rating: 4.9,
-    reviews: 985,
-    price: "1.497.124",
-    imageUrl: "https://placehold.co/300x200",
-  },
-  {
-    name: "deMira Hotel Gubeng Surabaya",
-    location: "Surabaya",
-    rating: 4.9,
-    reviews: 985,
-    price: "2.083.954",
-    imageUrl: "https://placehold.co/300x200",
+    imageUrl: image,
   },
 ];
 
@@ -62,24 +24,39 @@ const Hotel = () => {
   const [location, setLocation] = useState("");
   const [filteredHotels, setFilteredHotels] = useState(card);
   const [checkInDate, setCheckInDate] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedHotel, setSelectedHotel] = useState(null);
+
   useEffect(() => {
-    // Pastikan halaman selalu di-scroll ke atas saat pertama kali dimuat
-    window.scrollTo(0, 0);
+    window.scrollTo(0, 0); // Scroll ke atas saat pertama kali dimuat
   }, []);
 
+  // Fungsi untuk menangani pencarian hotel berdasarkan lokasi
   const handleSearch = () => {
-    // Filter hotels based on the location input
     const filtered = card.filter((hotel) =>
       hotel.location.toLowerCase().includes(location.toLowerCase())
     );
     setFilteredHotels(filtered);
   };
 
+  // Fungsi untuk menangani pemilihan kamar dan menampilkan modal
+  const handleSelectRoom = (hotel) => {
+    setSelectedHotel(hotel);
+    setIsModalOpen(true);
+  };
+
+  // Fungsi untuk menutup modal
+  const closeModal = () => {
+    setSelectedHotel(null);
+    setIsModalOpen(false);
+  };
+
+  // Render komponen Hotel
   return (
     <section className="relative min-h-screen flex flex-col items-center bg-gray-100 text-black p-8 mt-14">
       <div className="w-full max-w-7xl bg-white p-8 rounded-lg shadow-md mb-4">
+        {/* Form pencarian */}
         <div className="flex justify-between items-center">
-          {/* Location Input */}
           <div className="flex-1 mr-2">
             <label className="block text-gray-700 text-sm font-bold mb-2">
               City or hotel name
@@ -95,8 +72,6 @@ const Hotel = () => {
               />
             </div>
           </div>
-
-          {/* Date Input with DatePicker */}
           <div className="flex-1 mx-2">
             <label className="block text-gray-700 text-sm font-bold mb-2">
               Check-in
@@ -108,12 +83,10 @@ const Hotel = () => {
                 onChange={(date) => setCheckInDate(date)}
                 placeholderText="Select a date"
                 className="w-full outline-none"
-                dateFormat="dd-MM-yyyy" // Format tanggal
+                dateFormat="dd-MM-yyyy"
               />
             </div>
           </div>
-
-          {/* Duration Input */}
           <div className="flex-1 ml-2">
             <label className="block text-gray-700 text-sm font-bold mb-2">
               Duration
@@ -128,8 +101,6 @@ const Hotel = () => {
               />
             </div>
           </div>
-
-          {/* Guests and Rooms Input */}
           <div className="flex-1 ml-2">
             <label className="block text-gray-700 text-sm font-bold mb-2">
               Guests and Rooms
@@ -152,8 +123,6 @@ const Hotel = () => {
             </div>
           </div>
         </div>
-
-        {/* Search Button */}
         <div className="flex justify-center mt-4">
           <button
             className="w-full bg-black text-white px-6 py-2 rounded-lg hover:bg-gray-500 transition duration-300"
@@ -164,8 +133,8 @@ const Hotel = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1  gap-8 max-w-7xl w-full">
-        {/* Scrollable Hotel Cards */}
+      {/* Hotel Cards */}
+      <div className="grid grid-cols-1 gap-8 max-w-7xl w-full">
         <div className="h-[600px] overflow-y-auto pr-1">
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-4">
             {filteredHotels.length > 0 ? (
@@ -180,30 +149,26 @@ const Hotel = () => {
                   />
                   <div className="p-4">
                     <h2 className="text-lg font-semibold">{hotel.name}</h2>
-
-                    {/* Location */}
                     <div className="flex items-center text-gray-500 mt-2">
                       <SlLocationPin className="mr-1" />
                       <span>{hotel.location}</span>
                     </div>
-
-                    {/* Rating */}
                     <div className="flex items-center text-gray-500 mt-1">
                       <IoStar className="mr-1 text-yellow-400" />
                       <span>
                         {hotel.rating} ({hotel.reviews} Reviews)
                       </span>
                     </div>
-
-                    {/* Price */}
                     <div className="mt-2">
                       <span className="text-xl font-bold">
                         IDR {hotel.price}
                       </span>
                     </div>
-                    {/* Button Book Hotel */}
                     <div className="mt-4">
-                      <button className="w-full bg-black text-white py-2 rounded-full hover:bg-gray-500 transition duration-300">
+                      <button
+                        className="w-full text-white py-2 rounded-full bg-black hover:bg-gray-500 transition duration-300"
+                        onClick={() => handleSelectRoom(hotel)}
+                      >
                         Select Room
                       </button>
                     </div>
@@ -216,6 +181,14 @@ const Hotel = () => {
           </div>
         </div>
       </div>
+
+      {isModalOpen && (
+        <ModalHotel
+          isModalOpen={isModalOpen}
+          selectedHotel={selectedHotel}
+          closeModal={closeModal}
+        />
+      )}
     </section>
   );
 };

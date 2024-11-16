@@ -6,8 +6,8 @@ import {
   FaArrowRight,
   FaTimes,
 } from "react-icons/fa";
-import { FaArrowRightLong } from "react-icons/fa6";
-import { FiPlusCircle, FiMinusCircle } from "react-icons/fi";
+import image from "../assets/Garuda.jpg";
+import ModalFlight from "../modal/ModalFlight";
 
 const Flight = () => {
   useEffect(() => {
@@ -32,56 +32,8 @@ const Flight = () => {
       date: "11 Dec 2024",
       from: "Jakarta",
       to: "Bali",
-      logo: "https://placehold.co/50x50", // URL logo maskapai
+      logo: image, // URL logo maskapai
       classType: "Economy",
-    },
-    {
-      id: 2,
-      airline: "Lion Air",
-      price: "950.000/pax",
-      departure: "09:30",
-      arrival: "11:30",
-      date: "11 Dec 2024",
-      from: "Surabaya",
-      to: "Jakarta",
-      logo: "https://placehold.co/50x50", // URL logo maskapai
-      classType: "Business",
-    },
-    {
-      id: 3,
-      airline: "Citilink",
-      price: "1.200.000/pax",
-      departure: "11:00",
-      arrival: "13:00",
-      date: "11 Dec 2024",
-      from: "Bandung",
-      to: "Medan",
-      logo: "https://placehold.co/50x50", // URL logo maskapai
-      classType: "Economy",
-    },
-    {
-      id: 4,
-      airline: "AirAsia",
-      price: "750.000/pax",
-      departure: "12:00",
-      arrival: "14:00",
-      date: "11 Dec 2024",
-      from: "Yogyakarta",
-      to: "Surabaya",
-      logo: "https://placehold.co/50x50", // URL logo maskapai
-      classType: "Economy",
-    },
-    {
-      id: 5,
-      airline: "Sriwijaya Air",
-      price: "1.100.000/pax",
-      departure: "13:00",
-      arrival: "15:00",
-      date: "12 Dec 2024",
-      from: "Medan",
-      to: "Jakarta",
-      logo: "https://placehold.co/50x50", // URL logo maskapai
-      classType: "Business",
     },
   ]);
 
@@ -154,26 +106,6 @@ const Flight = () => {
   const handleCloseModal = () => {
     setIsModalOpen(false);
     setSelectedFlight(null);
-  };
-
-  // Tambahkan state baru untuk jumlah penumpang
-  const [passengerCount, setPassengerCount] = useState(1);
-
-  // Fungsi untuk menambah atau mengurangi jumlah penumpang
-  const handlePassengerChange = (change) => {
-    setPassengerCount((prevCount) => Math.max(1, prevCount + change));
-  };
-
-  // Fungsi untuk menghitung harga total menggunakan calculateTotalPrice
-  const calculateTotalPrice = () => {
-    if (!selectedFlight) return 0;
-
-    // Ubah harga dari format string ke angka
-    const priceNumber = parseInt(
-      selectedFlight.price.replace(/\./g, "").replace("/pax", ""),
-      10
-    );
-    return priceNumber * passengerCount;
   };
 
   const [departureDate, setDepartureDate] = useState(null);
@@ -308,7 +240,7 @@ const Flight = () => {
                   <img
                     src={flight.logo}
                     alt={`${flight.airline} logo`}
-                    className="w-12 h-12 rounded-full"
+                    className="w-32 h-32 rounded-full object-cover"
                   />
                   <div>
                     <div className="text-lg font-semibold">
@@ -351,96 +283,19 @@ const Flight = () => {
             </div>
           ))
         ) : (
-          <p className="text-center text-gray-500">No flights Searched.</p>
+          <p className="text-center text-gray-500">
+            No flights match your search criteria. Please adjust your filters
+            and try again.
+          </p>
         )}
       </div>
 
       {/* Modal Detail Penerbangan */}
       {isModalOpen && selectedFlight && (
-        <div
-          className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50"
-          onClick={handleCloseModal}
-        >
-          <div
-            className="bg-white p-6 rounded-lg max-w-md w-full shadow-lg transform transition-all duration-300 ease-in-out"
-            onClick={(e) => e.stopPropagation()}
-          >
-            {/* Header Modal */}
-            <div className="flex justify-between items-center mb-6 border-b pb-4">
-              <h2 className="text-2xl font-bold text-gray-800">
-                {selectedFlight.airline} - {selectedFlight.classType}
-              </h2>
-              <FaTimes
-                className="cursor-pointer text-2xl hover:text-red-500 transition duration-300"
-                onClick={handleCloseModal}
-              />
-            </div>
-
-            {/* Flight Details */}
-            <div className="flex items-center mb-4">
-              <img
-                src={selectedFlight.logo}
-                alt="Airline Logo"
-                className="w-12 h-12 mr-3 rounded-full border"
-              />
-              <div>
-                <p className="text-lg font-semibold">
-                  {selectedFlight.from}
-                  <FaArrowRightLong className="inline mx-2" />
-                  {selectedFlight.to}
-                </p>
-                <p className="text-sm text-gray-500">{selectedFlight.date}</p>
-              </div>
-            </div>
-
-            <div className="mb-4">
-              <p className="text-gray-600 text-sm">
-                <span className="font-semibold text-gray-800">Departure:</span>{" "}
-                {selectedFlight.departure}
-              </p>
-              <p className="text-gray-600 text-sm">
-                <span className="font-semibold text-gray-800">Arrival:</span>{" "}
-                {selectedFlight.arrival}
-              </p>
-              <p className="text-lg font-semibold text-gray-800 mt-2">
-                Price:{" "}
-                <span className="text-blue-600">{selectedFlight.price}</span>
-              </p>
-            </div>
-
-            {/* Passenger Selector */}
-            <div className="flex items-center justify-center my-4">
-              <button
-                onClick={() => handlePassengerChange(-1)}
-                disabled={passengerCount <= 1}
-              >
-                <FiMinusCircle className="text-3xl" />
-              </button>
-              <span className="mx-3 text-lg font-semibold text-gray-700">
-                {passengerCount}
-              </span>
-              <button onClick={() => handlePassengerChange(1)}>
-                <FiPlusCircle className="text-3xl" />
-              </button>
-            </div>
-
-            {/* Total Price */}
-            <p className="text-lg font-bold text-gray-800 text-center mt-4">
-              Total Price:{" "}
-              <span className="text-blue-600">
-                IDR {calculateTotalPrice().toLocaleString()}
-              </span>
-            </p>
-
-            {/* Confirm Button */}
-            <button
-              className="mt-6 w-full text-white py-3 rounded-lg font-semibold text-lg bg-blue-500 hover:bg-blue-600 transition duration-300"
-              onClick={handleCloseModal}
-            >
-              Continue to Payment
-            </button>
-          </div>
-        </div>
+        <ModalFlight
+          selectedFlight={selectedFlight}
+          onClose={handleCloseModal}
+        />
       )}
     </section>
   );

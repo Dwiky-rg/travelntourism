@@ -20,12 +20,12 @@ const Login = () => {
     }
 
     // Simulasi pengecekan kredensial (ganti dengan panggilan API ke backend kamu)
-    if (email === "user@example.com" && password === "password123") {
+    if (email === "johndoe@example.com" && password === "password123") {
       // Menyimpan data pengguna jika login berhasil
       localStorage.setItem("user", JSON.stringify({ email }));
 
       // Mengarahkan ke halaman dashboard setelah login berhasil
-      navigate("home");
+      navigate("/");
     } else {
       setError("Email atau Password salah!");
     }
