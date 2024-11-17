@@ -58,7 +58,7 @@ const destinations = [
     image: Card1,
     title: "Candi Borobudur",
     description:
-      "Candi Borobudur, yang terletak di Magelang, Jawa Tengah, Indonesia, adalah candi Buddha terbesar dan salah satu situs warisan dunia UNESCO. Dibangun pada abad ke-9 oleh dinasti Syailendra, candi ini terdiri dari sembilan tingkat dengan lebih dari 2.600 relief yang menggambarkan ajaran Buddha. Candi Borobudur tidak hanya dikenal karena arsitekturnya yang megah, tetapi juga sebagai tempat ziarah spiritual. Pemandangan matahari terbit yang menakjubkan dari atas candi menjadikannya salah satu destinasi wisata budaya paling populer di Indonesia.",
+      "Candi Borobudur, yang terletak di Magelang, Jawa Tengah, Indonesia, adalah candi Buddha terbesar dan salah satu situs warisan dunia UNESCO. Dibangun pada abad ke-9 oleh dinasti Syailendra, candi ini terdiri dari sembilan tingkat dengan lebih dari 2.600 relief yang menggambarkan ajaran Buddha. Candi Borobudur tidak hanya dikenal karena arsitekturnya yang megah, tetapi juga sebagai tempat ziarah spiritual.",
     location: "Jawa Tengah",
   },
   {
@@ -66,7 +66,7 @@ const destinations = [
     image: Card2,
     title: "Candi Prambanan",
     description:
-      "Candi Prambanan, yang terletak di Yogyakarta, Indonesia, adalah kompleks candi Hindu terbesar di Indonesia dan salah satu situs warisan dunia UNESCO. Dibangun pada abad ke-9 oleh Raja Rakai Pikatan, candi ini didedikasikan untuk Trimurti, yaitu Dewa Brahma, Wisnu, dan Siwa. Keindahan arsitektur dan relief-reliefnya yang menggambarkan kisah epik Ramayana menjadikannya destinasi budaya yang penting, serta menjadi simbol kejayaan kerajaan Mataram Kuno. Candi Prambanan menarik banyak wisatawan yang tertarik dengan sejarah dan keindahan bangunannya.",
+      "Candi Prambanan, yang terletak di Yogyakarta, Indonesia, adalah kompleks candi Hindu terbesar di Indonesia dan salah satu situs warisan dunia UNESCO. Dibangun pada abad ke-9 oleh Raja Rakai Pikatan, candi ini didedikasikan untuk Trimurti, yaitu Dewa Brahma, Wisnu, dan Siwa. Keindahan arsitektur dan relief-reliefnya yang menggambarkan kisah epik Ramayana menjadikannya destinasi budaya yang penting, serta menjadi simbol kejayaan kerajaan Mataram Kuno.",
     location: "Yogyakarta",
   },
   {

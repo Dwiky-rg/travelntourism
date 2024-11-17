@@ -11,6 +11,7 @@ import AdminDashboard from "./pages/AdminDashboard";
 import AddFlightForm from "./components/admin/AddFlightForm"; // Import AddFlightForm
 import AddHotelForm from "./components/admin/AddHotelForm";
 import UserData from "./components/admin/UserData";
+import ConfirmPayment from "./components/admin/ConfirmPayment";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
           <Route path="add-flight" element={<AddFlightForm />} />
           <Route path="add-hotel" element={<AddHotelForm />} />
           <Route path="user-data" element={<UserData />} />
+          <Route path="confirm-payment" element={<ConfirmPayment />} />
         </Route>
 
         {/* Route untuk halaman Login */}

@@ -62,7 +62,7 @@ const Hotel = () => {
               City or hotel name
             </label>
             <div className="flex items-center border rounded-lg p-2">
-              <FaLocationDot className="mr-2" />
+              <FaLocationDot className="mr-2 text-blue-500" />
               <input
                 type="text"
                 placeholder="City, hotel, place to go"
@@ -77,7 +77,7 @@ const Hotel = () => {
               Check-in
             </label>
             <div className="flex items-center border rounded-lg p-2">
-              <FaCalendarAlt className="mr-2" />
+              <FaCalendarAlt className="mr-2 text-blue-500" />
               <DatePicker
                 selected={checkInDate}
                 onChange={(date) => setCheckInDate(date)}
@@ -92,7 +92,7 @@ const Hotel = () => {
               Duration
             </label>
             <div className="flex items-center border rounded-lg p-2">
-              <FaMoon className="mr-2" />
+              <FaMoon className="mr-2 text-blue-500" />
               <input
                 type="number"
                 placeholder="1 Night"
@@ -106,14 +106,14 @@ const Hotel = () => {
               Guests and Rooms
             </label>
             <div className="flex items-center border rounded-lg p-2">
-              <FaUser className="mr-2" />
+              <FaUser className="mr-2 text-blue-500" />
               <input
                 type="number"
                 placeholder="Guests"
                 className="w-1/2 outline-none mr-2"
                 min="1"
               />
-              <MdLocalHotel className="mr-2" />
+              <MdLocalHotel className="mr-2 text-blue-500" />
               <input
                 type="number"
                 placeholder="Rooms"
@@ -125,7 +125,7 @@ const Hotel = () => {
         </div>
         <div className="flex justify-center mt-4">
           <button
-            className="w-full bg-black text-white px-6 py-2 rounded-lg hover:bg-gray-500 transition duration-300"
+            className="w-full text-white px-6 py-2 rounded-lg bg-blue-500 hover:bg-blue-600 transition duration-300"
             onClick={handleSearch}
           >
             Search
@@ -166,7 +166,7 @@ const Hotel = () => {
                     </div>
                     <div className="mt-4">
                       <button
-                        className="w-full text-white py-2 rounded-full bg-black hover:bg-gray-500 transition duration-300"
+                        className="w-full text-white py-2 rounded-full bg-blue-500 hover:bg-blue-600 transition duration-300"
                         onClick={() => handleSelectRoom(hotel)}
                       >
                         Select Room

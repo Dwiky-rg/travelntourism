@@ -137,6 +137,8 @@ const AddFlightForm = () => {
               <th className="p-2">Airline</th>
               <th className="p-2">From</th>
               <th className="p-2">To</th>
+              <th className="p-2">Departure</th>
+              <th className="p-2">Arrival</th>
               <th className="p-2">Date</th>
               <th className="p-2">Price</th>
               <th className="p-2">Actions</th>{" "}
@@ -149,6 +151,8 @@ const AddFlightForm = () => {
                 <td className="p-2">{flight.airline}</td>
                 <td className="p-2">{flight.from}</td>
                 <td className="p-2">{flight.to}</td>
+                <td className="p-2">{flight.departure}</td>
+                <td className="p-2">{flight.arrival}</td>
                 <td className="p-2">{flight.date}</td>
                 <td className="p-2">{flight.price}</td>
                 <td className="p-2 flex space-x-2">
@@ -244,6 +248,34 @@ const AddFlightForm = () => {
                     type="text"
                     name="to"
                     value={formData.to}
+                    onChange={handleChange}
+                    className="w-full p-2 border rounded"
+                    required
+                  />
+                </div>
+
+                <div className="mb-4">
+                  <label className="block text-gray-700 font-bold">
+                    Departure
+                  </label>
+                  <input
+                    type="time"
+                    name="departure"
+                    value={formData.departure}
+                    onChange={handleChange}
+                    className="w-full p-2 border rounded"
+                    required
+                  />
+                </div>
+
+                <div className="mb-4">
+                  <label className="block text-gray-700 font-bold">
+                    Arrival
+                  </label>
+                  <input
+                    type="time"
+                    name="arrival"
+                    value={formData.arrival}
                     onChange={handleChange}
                     className="w-full p-2 border rounded"
                     required

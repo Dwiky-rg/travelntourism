@@ -4,6 +4,7 @@ import { FaUser, FaHotel, FaSignOutAlt } from "react-icons/fa";
 import { GiCommercialAirplane } from "react-icons/gi";
 import { MdDashboard } from "react-icons/md";
 import { HiOutlineMenuAlt3 } from "react-icons/hi";
+import { RiMoneyDollarCircleFill } from "react-icons/ri";
 
 const NavItem = ({ to, icon: Icon, label, collapsed, isActive, onClick }) => (
   <NavLink
@@ -74,6 +75,14 @@ const Sidebar = () => {
           collapsed={collapsed}
           isActive={activeMenu === "/admin/user-data"}
           onClick={() => handleMenuClick("/admin/user-data")} // Menandai Profile sebagai aktif
+        />
+        <NavItem
+          to="/admin/confirm-payment"
+          icon={RiMoneyDollarCircleFill}
+          label="Payment"
+          collapsed={collapsed}
+          isActive={activeMenu === "/admin/confirm-payment"}
+          onClick={() => handleMenuClick("/admin/confirm-payment")} // Menandai Profile sebagai aktif
         />
         <NavItem
           to="/admin/add-flight"

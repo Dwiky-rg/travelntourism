@@ -47,13 +47,13 @@ const Navbar = () => {
   ];
 
   const bookingItems = [
-    { name: "Pesawat", path: "/flight" },
+    { name: "Flight", path: "/flight" },
     { name: "Hotel", path: "/hotel" },
   ];
 
   return (
     <nav
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 w-full p-2 z-50 transition-all duration-300 ${
         isScrolled
           ? "bg-black bg-opacity-50 backdrop-blur-md"
           : "bg-transparent"
@@ -86,12 +86,12 @@ const Navbar = () => {
               Booking <FaChevronDown className="ml-2" />
             </button>
             {isDropdownOpen && (
-              <div className="absolute bg-gray-700 mt-2 rounded shadow-lg">
+              <div className="absolute bg-gray-700 mt-2 rounded shadow-lg w-full text-center">
                 {bookingItems.map((item) => (
                   <Link
                     key={item.name}
                     to={item.path}
-                    className="block px-4 py-2 text-white hover:bg-blue-500 transition-all duration-300"
+                    className="block px-4 py-2 text-white hover:bg-blue-500 rounded transition-all duration-300"
                   >
                     {item.name}
                   </Link>

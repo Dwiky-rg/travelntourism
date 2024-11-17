@@ -1,7 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Profile from "../assets/John.jpg";
-import { FaTimes } from "react-icons/fa";
+import {
+  FaTimes,
+  FaUser,
+  FaPhoneAlt,
+  FaEnvelope,
+  FaBirthdayCake,
+  FaGenderless,
+} from "react-icons/fa";
 
 const UserProfile = ({ isMobile }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -37,17 +44,21 @@ const UserProfile = ({ isMobile }) => {
     <>
       <div className="relative inline-block">
         <div
-          className={`relative rounded-full ${
-            isMobile ? "w-16 h-16" : "w-12 h-12"
+          className={`relative flex items-center ${
+            isMobile ? "w-16 h-16" : "w-[180px] left-28"
           }`}
-          onClick={handleProfileClick}
         >
-          {/* Menggunakan gambar profil dari data pengguna */}
-          <img
-            src={userDetails.profileImage} // Gambar akan diambil dari data pengguna (profileImage)
-            alt="User Profile"
-            className="rounded-full w-full h-full object-cover cursor-pointer"
-          />
+          {/* Ikon Pesan di sebelah kiri gambar profil */}
+          <FaEnvelope className="text-white mr-4" /> {/* Ikon pesan */}
+          {/* Gambar profil */}
+          <div className="relative">
+            <img
+              src={userDetails.profileImage}
+              alt="User Profile"
+              className="rounded-full w-8 object-cover cursor-pointer"
+              onClick={handleProfileClick}
+            />
+          </div>
         </div>
 
         {showModal && (
@@ -63,25 +74,40 @@ const UserProfile = ({ isMobile }) => {
               <h2 className="text-xl font-bold mb-4 text-gray-700 border-b pb-2">
                 User Profile
               </h2>
-              <div className="space-y-2">
-                <p className="text-sm text-gray-600">
-                  <strong className="text-gray-800">Full Name:</strong>{" "}
+              <div className="space-y-4">
+                <p className="flex items-center text-sm text-gray-700">
+                  <FaUser className="mr-2 text-gray-500" />
+                  <strong className="font-medium text-gray-900">
+                    Full Name:
+                  </strong>{" "}
                   {userDetails.fullName}
                 </p>
-                <p className="text-sm text-gray-600">
-                  <strong className="text-gray-800">Gender:</strong>{" "}
+                <p className="flex items-center text-sm text-gray-700">
+                  <FaGenderless className="mr-2 text-gray-500" />
+                  <strong className="font-medium text-gray-900">
+                    Gender:
+                  </strong>{" "}
                   {userDetails.gender}
                 </p>
-                <p className="text-sm text-gray-600">
-                  <strong className="text-gray-800">Birth Date:</strong>{" "}
+                <p className="flex items-center text-sm text-gray-700">
+                  <FaBirthdayCake className="mr-2 text-gray-500" />
+                  <strong className="font-medium text-gray-900">
+                    Birth Date:
+                  </strong>{" "}
                   {userDetails.birthDate}
                 </p>
-                <p className="text-sm text-gray-600">
-                  <strong className="text-gray-800">Phone:</strong>{" "}
+                <p className="flex items-center text-sm text-gray-700">
+                  <FaPhoneAlt className="mr-2 text-gray-500" />
+                  <strong className="font-medium text-gray-900">
+                    Phone:
+                  </strong>{" "}
                   {userDetails.phone}
                 </p>
-                <p className="text-sm text-gray-600">
-                  <strong className="text-gray-800">Email:</strong>{" "}
+                <p className="flex items-center text-sm text-gray-700">
+                  <FaEnvelope className="mr-2 text-gray-500" />
+                  <strong className="font-medium text-gray-900">
+                    Email:
+                  </strong>{" "}
                   {userDetails.email}
                 </p>
               </div>
@@ -114,7 +140,11 @@ const UserProfile = ({ isMobile }) => {
       </div>
     </>
   ) : (
-    <div className={`flex ${isMobile ? "flex-col items-center" : "space-x-4"}`}>
+    <div
+      className={`flex ${
+        isMobile ? "flex-col items-center" : "space-x-2 w-[180px]"
+      }`}
+    >
       <Link
         to="/login"
         className={`${
