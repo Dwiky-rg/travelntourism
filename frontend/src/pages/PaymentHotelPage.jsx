@@ -46,21 +46,27 @@ const PaymentHotelPage = () => {
       });
 
       if (!response.ok) {
-        throw new Error(`Gagal memperbarui status pembayaran: ${response.statusText}`);
+        throw new Error(
+          `Gagal memperbarui status pembayaran: ${response.statusText}`
+        );
       }
 
       const data = await response.json();
       console.log("Status pembayaran diperbarui:", data);
 
       // Refresh payments data after status update
-      const updatedPayments = payments.map((payment) => (payment.id === paymentId ? { ...payment, status: status } : payment));
+      const updatedPayments = payments.map((payment) =>
+        payment.id === paymentId ? { ...payment, status: status } : payment
+      );
       setPayments(updatedPayments);
 
       // SweetAlert success notification
       Swal.fire({
         icon: "success",
         title: "Berhasil!",
-        text: `Status pembayaran berhasil diperbarui menjadi "${status === "terima" ? "Diterima" : "Ditolak"}".`,
+        text: `Status pembayaran berhasil diperbarui menjadi "${
+          status === "terima" ? "Diterima" : "Ditolak"
+        }".`,
         confirmButtonText: "OK",
       });
     } catch (error) {
@@ -100,7 +106,9 @@ const PaymentHotelPage = () => {
     <div className="w-full mx-auto bg-[#041E31] p-10 rounded-lg h-auto">
       <div className="flex items-center mb-4">
         <RiMoneyDollarCircleFill className="text-white text-3xl mr-2" />
-        <h1 className="text-2xl font-bold text-white">Hotel Payment Management</h1>
+        <h1 className="text-2xl font-bold text-white">
+          Hotel Payment Management
+        </h1>
       </div>
       <div className="mt-8">
         <h2 className="text-white text-xl font-bold mb-4">Payment Data</h2>
@@ -117,14 +125,26 @@ const PaymentHotelPage = () => {
           </thead>
           <tbody>
             {payments.map((payment, index) => (
-              <tr key={index} className="border-b">
+              <tr key={index} className="border-b text-white">
+                {/* Kolom Booking ID */}
                 <td className="px-4 py-2">{payment.bookingId}</td>
+
+                {/* Kolom Tombol Lihat Bukti */}
                 <td className="px-4 py-2">
-                  <button className="text-blue-500" onClick={() => openModal(`/images-payment-hotels/${payment.receipt}`)}>
+                  <button
+                    className="text-blue-500 underline"
+                    onClick={() =>
+                      openModal(`/images-payment-hotels/${payment.receipt}`)
+                    }
+                  >
                     Lihat Bukti
                   </button>
                 </td>
+
+                {/* Kolom Bank */}
                 <td className="px-4 py-2">{payment.bank || "Unknown"}</td>
+
+                {/* Kolom Tanggal Pembayaran */}
                 <td className="px-4 py-2">
                   {payment.paymentDate
                     ? new Date(payment.paymentDate).toLocaleString("id-ID", {
@@ -138,18 +158,40 @@ const PaymentHotelPage = () => {
                       })
                     : "N/A"}
                 </td>
-                <td className="px-4 py-2">
-                  <span className={`status-label ${payment.status === "proses" ? "bg-yellow-500 rounded-md p-2 text-white" : payment.status === "terima" ? "bg-green-500 rounded-md p-2 text-white" : "bg-red-500 rounded-md p-2 text-white"}`}>
+
+                {/* Kolom Status Pembayaran */}
+                <td className="p-4">
+                  <span
+                    className={`status-label ${
+                      payment.status === "proses"
+                        ? "bg-yellow-500 rounded-md p-2 text-white"
+                        : payment.status === "terima"
+                        ? "bg-green-500 rounded-md p-2 text-white"
+                        : "bg-red-500 rounded-md p-2 text-white"
+                    }`}
+                  >
                     {payment.status}
                   </span>
                 </td>
-                <td className="px-4 py-2 text-center">
+
+                {/* Kolom Aksi */}
+                <td className="p-4">
                   {payment.status === "proses" ? (
                     <>
-                      <button className="px-3 py-1 bg-blue-500 text-white rounded-md" onClick={() => updatePaymentStatus(payment.id, "terima")}>
+                      <button
+                        className="px-3 py-1 bg-blue-500 text-white rounded-md"
+                        onClick={() =>
+                          updatePaymentStatus(payment.id, "terima")
+                        }
+                      >
                         Accept
                       </button>
-                      <button className="px-3 py-1 bg-red-500 text-white rounded-md ml-2" onClick={() => updatePaymentStatus(payment.id, "ditolak")}>
+                      <button
+                        className="px-3 py-1 bg-red-500 text-white rounded-md ml-2"
+                        onClick={() =>
+                          updatePaymentStatus(payment.id, "ditolak")
+                        }
+                      >
                         Reject
                       </button>
                     </>
@@ -168,10 +210,17 @@ const PaymentHotelPage = () => {
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
           <div className="bg-white p-4 rounded-lg max-w-xl w-full">
             <div className="relative">
-              <button onClick={closeModal} className="absolute top-0 right-0 bg-red-500 text-white p-2 rounded-full">
+              <button
+                onClick={closeModal}
+                className="absolute top-0 right-0 bg-red-500 text-white p-2 rounded-full"
+              >
                 <RiCloseFill className="text-white text-xl" />
               </button>
-              <img src={receiptImage} alt="Receipt" className="max-w-full h-auto mx-auto" />
+              <img
+                src={receiptImage}
+                alt="Receipt"
+                className="max-w-full h-auto mx-auto"
+              />
             </div>
           </div>
         </div>

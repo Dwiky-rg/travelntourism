@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
+import bcalogo from "../assets/BCA.png";
+import mandirilogo from "../assets/Mandiri.png";
 
 const FlightDetailPayment = () => {
   const jadwalId = useParams(); // Access flight schedule ID from URL
@@ -93,20 +95,26 @@ const FlightDetailPayment = () => {
     form.append("receipt", formData.receipt); // Append the file for payment proof
 
     try {
-      const response = await fetch("http://localhost:5000/pesawat/book/flight/create", {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-        body: form,
-      });
+      const response = await fetch(
+        "http://localhost:5000/pesawat/book/flight/create",
+        {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          body: form,
+        }
+      );
 
       // Use response.json() directly to parse the response body
       const data = await response.json();
 
       // Check if the response is OK
       if (!response.ok) {
-        console.error("Error submitting the booking:", data.message || response.statusText);
+        console.error(
+          "Error submitting the booking:",
+          data.message || response.statusText
+        );
         throw new Error(data.message || "Failed to complete the booking");
       }
 
@@ -140,7 +148,9 @@ const FlightDetailPayment = () => {
       <div className="w-full max-w-5xl">
         {/* Detail Pemesan */}
         <div className="bg-white rounded-lg shadow-md p-6 mb-4">
-          <h2 className="text-lg font-semibold mb-6">Contact Details (Booking details will be sent to)</h2>
+          <h2 className="text-lg font-semibold mb-6">
+            Contact Details (Booking details will be sent to)
+          </h2>
           <div className="flex space-x-4">
             <div className="flex-1">
               <label className="block font-medium mb-1">Full Name</label>
@@ -174,14 +184,22 @@ const FlightDetailPayment = () => {
 
         {/* Flight Schedule Details */}
         <div className="bg-white rounded-lg shadow-lg p-8 mb-6 max-w-5xl mx-auto">
-          <h2 className="text-2xl font-semibold mb-6 text-gray-800">Flight Schedule</h2>
+          <h2 className="text-2xl font-semibold mb-6 text-gray-800">
+            Flight Schedule
+          </h2>
           <div className="space-y-6">
             <div className="flex justify-between items-center">
               <span className="font-medium text-gray-600">Flight:</span>
               <div className="flex items-center">
                 {/* Image of the airline logo */}
-                <img src={`/images-airlines/${flight.pesawat.logo}`} alt={`${flight.pesawat.airline} Logo`} className="w-12 h-12 object-contain mr-4" />
-                <span className="text-lg font-bold text-gray-800">{flight.pesawat.airline}</span>
+                <img
+                  src={`/images-airlines/${flight.pesawat.logo}`}
+                  alt={`${flight.pesawat.airline} Logo`}
+                  className="w-12 h-12 object-contain mr-4"
+                />
+                <span className="text-lg font-bold text-gray-800">
+                  {flight.pesawat.airline}
+                </span>
               </div>
             </div>
             <div className="flex justify-between">
@@ -192,15 +210,21 @@ const FlightDetailPayment = () => {
             </div>
             <div className="flex justify-between">
               <span className="font-medium text-gray-600">Flight Date:</span>
-              <span className="text-lg text-gray-800">{new Date(flight.flightDate).toLocaleDateString("id-ID")}</span>
+              <span className="text-lg text-gray-800">
+                {new Date(flight.flightDate).toLocaleDateString("id-ID")}
+              </span>
             </div>
             <div className="flex justify-between">
               <span className="font-medium text-gray-600">Departure Time:</span>
-              <span className="text-lg text-gray-800">{flight.departureTime}</span>
+              <span className="text-lg text-gray-800">
+                {flight.departureTime}
+              </span>
             </div>
             <div className="flex justify-between">
               <span className="font-medium text-gray-600">Arrival Time:</span>
-              <span className="text-lg text-gray-800">{flight.arrivalTime}</span>
+              <span className="text-lg text-gray-800">
+                {flight.arrivalTime}
+              </span>
             </div>
             <div className="flex justify-between">
               <span className="font-medium text-gray-600">Class:</span>
@@ -208,7 +232,12 @@ const FlightDetailPayment = () => {
             </div>
             <div className="flex justify-between border-t pt-4 mt-4 border-gray-300">
               <span className="font-medium text-gray-600">Price:</span>
-              <span className="text-lg font-bold text-blue-500">{new Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR" }).format(flight.price)}</span>
+              <span className="text-lg font-bold text-blue-500">
+                {new Intl.NumberFormat("id-ID", {
+                  style: "currency",
+                  currency: "IDR",
+                }).format(flight.price)}
+              </span>
             </div>
           </div>
         </div>
@@ -220,11 +249,23 @@ const FlightDetailPayment = () => {
             <div className="space-y-6">
               <div>
                 <label className="block font-medium mb-1">Full Name</label>
-                <input type="text" name="name" value={formData.name} onChange={handleFormChange} placeholder="Full Name" className="w-full border rounded-lg p-2" />
+                <input
+                  type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleFormChange}
+                  placeholder="Full Name"
+                  className="w-full border rounded-lg p-2"
+                />
               </div>
               <div>
                 <label className="block font-medium mb-1">Gender</label>
-                <select name="gender" value={formData.gender} onChange={handleFormChange} className="w-full border rounded-lg p-2">
+                <select
+                  name="gender"
+                  value={formData.gender}
+                  onChange={handleFormChange}
+                  className="w-full border rounded-lg p-2"
+                >
                   <option value="" disabled>
                     Select Gender
                   </option>
@@ -234,11 +275,23 @@ const FlightDetailPayment = () => {
               </div>
               <div>
                 <label className="block font-medium mb-1">Date of Birth</label>
-                <input type="date" name="birthday" value={formData.birthday} onChange={handleFormChange} className="w-full border rounded-lg p-2" />
+                <input
+                  type="date"
+                  name="birthday"
+                  value={formData.birthday}
+                  onChange={handleFormChange}
+                  className="w-full border rounded-lg p-2"
+                />
               </div>
               <div>
                 <label className="block font-medium mb-1">Nationality</label>
-                <input type="text" name="country" value={formData.country} onChange={handleFormChange} className="w-full border rounded-lg p-2" />
+                <input
+                  type="text"
+                  name="country"
+                  value={formData.country}
+                  onChange={handleFormChange}
+                  className="w-full border rounded-lg p-2"
+                />
               </div>
             </div>
           </div>
@@ -249,21 +302,34 @@ const FlightDetailPayment = () => {
             <div className="space-y-4">
               <div>
                 <label className="block font-medium mb-1">Payment Method</label>
-                <select name="paymentMethod" value={selectedPaymentMethod} onChange={handlePaymentMethodChange} className="w-full border rounded-lg p-2">
+                <select
+                  name="paymentMethod"
+                  value={selectedPaymentMethod}
+                  onChange={handlePaymentMethodChange}
+                  className="w-full border rounded-lg p-2"
+                >
                   <option value="">Select Payment Method</option>
-                  <option value="bni">BNI</option>
-                  <option value="bca">BCA</option>
-                  <option value="bri">BRI</option>
+                  <option value="bni">BNI - 0987654321 </option>
+                  <option value="bca">BCA - 1237916512</option>
+                  <option value="bri">BRI - 1739754271</option>
                 </select>
               </div>
               <div>
                 <label className="block font-medium mb-1">Payment Proof</label>
-                <input type="file" accept="image/*" onChange={handlePaymentProofChange} className="w-full border rounded-lg p-2" />
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={handlePaymentProofChange}
+                  className="w-full border rounded-lg p-2"
+                />
               </div>
             </div>
           </div>
 
-          <button type="submit" className="w-full py-3 px-6 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700">
+          <button
+            type="submit"
+            className="w-full py-3 px-6 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700"
+          >
             Confirm Payment
           </button>
         </form>

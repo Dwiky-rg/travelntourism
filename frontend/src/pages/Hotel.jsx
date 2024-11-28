@@ -14,7 +14,9 @@ const Hotel = () => {
   useEffect(() => {
     const fetchHotels = async () => {
       try {
-        const response = await axios.get(`${import.meta.env.VITE_API_URL}/hotel`);
+        const response = await axios.get(
+          `${import.meta.env.VITE_API_URL}/hotel`
+        );
         setCard(response.data); // Simpan semua data hotel
       } catch (error) {
         console.error("Failed to fetch hotels:", error);
@@ -31,12 +33,16 @@ const Hotel = () => {
 
     // Filter berdasarkan lokasi
     if (location.trim()) {
-      filtered = filtered.filter((hotel) => hotel.location.toLowerCase().includes(location.toLowerCase()));
+      filtered = filtered.filter((hotel) =>
+        hotel.location.toLowerCase().includes(location.toLowerCase())
+      );
     }
 
     // Filter berdasarkan nama hotel
     if (hotelName.trim()) {
-      filtered = filtered.filter((hotel) => hotel.name.toLowerCase().includes(hotelName.toLowerCase()));
+      filtered = filtered.filter((hotel) =>
+        hotel.name.toLowerCase().includes(hotelName.toLowerCase())
+      );
     }
 
     setFilteredHotels(filtered);
@@ -44,7 +50,11 @@ const Hotel = () => {
   };
 
   // Fungsi untuk format harga
-  const formatPrice = (price) => new Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR" }).format(price);
+  const formatPrice = (price) =>
+    new Intl.NumberFormat("id-ID", {
+      style: "currency",
+      currency: "IDR",
+    }).format(price);
 
   // Fungsi untuk menampilkan bintang rating
   const renderRating = (rating) => {
@@ -79,23 +89,42 @@ const Hotel = () => {
         <div className="bg-white p-6 rounded-lg shadow-md">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-gray-700 text-sm font-bold mb-2">City</label>
+              <label className="block text-gray-700 text-sm font-bold mb-2">
+                City
+              </label>
               <div className="flex items-center border rounded-lg p-2">
                 <FaLocationDot className="mr-2 text-blue-500" />
-                <input type="text" placeholder="Enter city" className="w-full outline-none" value={location} onChange={(e) => setLocation(e.target.value)} />
+                <input
+                  type="text"
+                  placeholder="Enter city"
+                  className="w-full outline-none"
+                  value={location}
+                  onChange={(e) => setLocation(e.target.value)}
+                />
               </div>
             </div>
             <div>
-              <label className="block text-gray-700 text-sm font-bold mb-2">Hotel Name</label>
+              <label className="block text-gray-700 text-sm font-bold mb-2">
+                Hotel Name
+              </label>
               <div className="flex items-center border rounded-lg p-2">
                 <FaLocationDot className="mr-2 text-blue-500" />
-                <input type="text" placeholder="Enter hotel name" className="w-full outline-none" value={hotelName} onChange={(e) => setHotelName(e.target.value)} />
+                <input
+                  type="text"
+                  placeholder="Enter hotel name"
+                  className="w-full outline-none"
+                  value={hotelName}
+                  onChange={(e) => setHotelName(e.target.value)}
+                />
               </div>
             </div>
           </div>
           {/* Tombol Search */}
           <div className="mt-4 flex justify-center">
-            <button onClick={handleSearch} className="bg-black w-full text-white py-2 px-4 rounded-lg">
+            <button
+              onClick={handleSearch}
+              className="bg-blue-500 text-white w-full px-6 py-2 rounded-full hover:bg-blue-600 focus:outline-none"
+            >
               Search
             </button>
           </div>
@@ -107,8 +136,15 @@ const Hotel = () => {
             filteredHotels.length > 0 ? (
               <div className="grid grid-cols-1 lg:grid-cols-4 gap-4">
                 {filteredHotels.map((hotel, index) => (
-                  <div key={index} className="border rounded-lg overflow-hidden shadow-lg mb-4">
-                    <img src={`/images-hotels/${hotel.image}`} alt={hotel.name} className="w-full h-56 object-cover" />
+                  <div
+                    key={index}
+                    className="border rounded-lg overflow-hidden shadow-lg mb-4"
+                  >
+                    <img
+                      src={`/images-hotels/${hotel.image}`}
+                      alt={hotel.name}
+                      className="w-full h-56 object-cover"
+                    />
                     <div className="p-4">
                       <h2 className="text-lg font-semibold">{hotel.name}</h2>
                       <div className="flex items-center text-gray-500 mt-2">
@@ -116,14 +152,21 @@ const Hotel = () => {
                         <span>{hotel.location}</span>
                       </div>
                       <div className="mt-2">
-                        <span className="text-xl font-bold">{formatPrice(hotel.price)}</span>
+                        <span className="text-xl font-bold">
+                          {formatPrice(hotel.price)}
+                        </span>
                       </div>
                       {/* Render Rating */}
-                      <div className="mt-2 text-yellow-500">{renderRating(hotel.rating)}</div>
+                      <div className="mt-2 text-yellow-500">
+                        {renderRating(hotel.rating)}
+                      </div>
 
                       {/* Tombol Book Hotel */}
                       <div className="mt-4 w-full">
-                        <Link to={`/hotel/booking/${hotel.id}`} className="mt-4 bg-black text-white py-2 px-4 w-full rounded-lg text-center">
+                        <Link
+                          to={`/hotel/booking/${hotel.id}`}
+                          className="mt-4 bg-black text-white py-2 px-4 w-full rounded-lg text-center"
+                        >
                           Book Hotel
                         </Link>
                       </div>
@@ -135,7 +178,9 @@ const Hotel = () => {
               <p className="text-center text-gray-500">No hotels found</p>
             )
           ) : (
-            <p className="text-center text-gray-500">Search berdasarkan nama hotel dan lokasi hotel</p>
+            <p className="text-center text-gray-500">
+              Search berdasarkan nama hotel dan lokasi hotel
+            </p>
           )}
         </div>
       </div>

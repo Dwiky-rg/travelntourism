@@ -28,7 +28,9 @@ const UserData = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await axios.get(`${import.meta.env.VITE_API_URL}/users`);
+        const response = await axios.get(
+          `${import.meta.env.VITE_API_URL}/users`
+        );
         setUsers(response.data); // Mengasumsikan respon berupa array data pengguna
       } catch (error) {
         console.error("Terjadi kesalahan saat mengambil data pengguna:", error);
@@ -65,13 +67,16 @@ const UserData = () => {
     }
 
     try {
-      const response = await axios.post(`${import.meta.env.VITE_API_URL}/users/add`, {
-        name: formData.name,
-        email: formData.email,
-        phone: formData.phone,
-        password: formData.password,
-        role: formData.role,
-      });
+      const response = await axios.post(
+        `${import.meta.env.VITE_API_URL}/users/add`,
+        {
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          password: formData.password,
+          role: formData.role,
+        }
+      );
 
       if (response.status === 201) {
         Swal.fire({
@@ -106,14 +111,20 @@ const UserData = () => {
 
     if (result.isConfirmed) {
       try {
-        const response = await axios.delete(`${import.meta.env.VITE_API_URL}/users/${id}`);
+        const response = await axios.delete(
+          `${import.meta.env.VITE_API_URL}/users/${id}`
+        );
         if (response.status === 200) {
           setUsers(users.filter((user) => user.id !== id));
           Swal.fire("Terhapus!", "Pengguna telah dihapus.", "success");
         }
       } catch (error) {
         console.error("Terjadi kesalahan saat menghapus pengguna:", error);
-        Swal.fire("Kesalahan!", "Ada masalah saat menghapus pengguna.", "error");
+        Swal.fire(
+          "Kesalahan!",
+          "Ada masalah saat menghapus pengguna.",
+          "error"
+        );
       }
     }
   };
@@ -146,13 +157,16 @@ const UserData = () => {
     }
 
     try {
-      const response = await axios.put(`${import.meta.env.VITE_API_URL}/users/${editFormData.id}`, {
-        name: editFormData.name,
-        email: editFormData.email,
-        phone: editFormData.phone,
-        password: editFormData.password,
-        role: editFormData.role,
-      });
+      const response = await axios.put(
+        `${import.meta.env.VITE_API_URL}/users/${editFormData.id}`,
+        {
+          name: editFormData.name,
+          email: editFormData.email,
+          phone: editFormData.phone,
+          password: editFormData.password,
+          role: editFormData.role,
+        }
+      );
 
       if (response.status === 200) {
         Swal.fire({
@@ -161,7 +175,11 @@ const UserData = () => {
           icon: "success",
           confirmButtonText: "OK",
         });
-        setUsers((prevUsers) => prevUsers.map((user) => (user.id === editFormData.id ? { ...user, ...response.data } : user)));
+        setUsers((prevUsers) =>
+          prevUsers.map((user) =>
+            user.id === editFormData.id ? { ...user, ...response.data } : user
+          )
+        );
         setShowModal(false); // Menutup modal setelah update
       }
     } catch (error) {
@@ -179,52 +197,64 @@ const UserData = () => {
     <div className="w-full mx-auto bg-[#041E31] p-10 rounded-lg h-auto">
       <div className="flex items-center mb-4">
         <FaUser className="text-white text-3xl mr-2" />
-        <h1 className="text-2xl font-bold text-white">Manajemen User</h1>
+        <h1 className="text-2xl font-bold text-white">User Management</h1>
       </div>
 
       {/* Tombol untuk menambah pengguna baru */}
-      <button className="w-full bg-green-500 text-white font-bold py-2 px-4 rounded hover:bg-green-600 mb-4" onClick={() => setShowModal(true)}>
-        Tambah User Baru
+      <button
+        className="w-full bg-green-500 text-white font-bold py-2 px-4 rounded hover:bg-green-600 mb-4"
+        onClick={() => setShowModal(true)}
+      >
+        Add New User
       </button>
 
       {/* Tabel menampilkan data pengguna */}
       <div className="mt-8">
-        <h2 className="text-white text-xl font-bold mb-4">Data User</h2>
-        <table className="min-w-full text-sm text-left text-gray-500 border border-gray-300 rounded-lg overflow-hidden">
+        <h2 className="text-white text-xl font-bold mb-4">User Data</h2>
+        <table className="min-w-full text-sm text-left text-gray-500">
           <thead className="bg-gray-700 text-white">
             <tr>
-              <th className="p-2">Nama</th>
-              <th className="p-2">Email</th>
-              <th className="p-2">Telepon</th>
-              <th className="p-2">Role</th>
-              <th className="p-2 text-center">Aksi</th>
+              <th className="px-4 py-2">Name</th>
+              <th className="px-4 py-2">Email</th>
+              <th className="px-4 py-2">Phone</th>
+              <th className="px-4 py-2">Role</th>
+              <th className="px-4 py-2 text-center">Action</th>
             </tr>
           </thead>
           <tbody>
             {users.length > 0 ? (
               users.map((user) => (
-                <tr key={user.id} className="bg-gray-800 hover:bg-gray-700 transition duration-300">
-                  <td className="p-2 text-white">{user.name}</td>
-                  <td className="p-2 text-white">{user.email}</td>
-                  <td className="p-2 text-white">{user.phone}</td>
-                  <td className="p-2 text-white">{user.role}</td>
-                  <td className="p-2 text-white text-center">
+                <tr key={user.id} className="border-b text-white">
+                  <td className="px-4 py-2">{user.name}</td>
+                  <td className="px-4 py-2">{user.email}</td>
+                  <td className="px-4 py-2">{user.phone}</td>
+                  <td className="px-4 py-2">{user.role}</td>
+                  <td className="p-4 text-center">
                     {/* Tombol Edit untuk setiap pengguna */}
-                    <button onClick={() => handleEdit(user)} className="text-white bg-blue-600 font-semibold py-1 px-3 rounded-lg transition duration-300">
+                    <button
+                      onClick={() => handleEdit(user)}
+                      className="text-white bg-blue-600 font-semibold py-1 px-3 rounded-lg transition duration-300"
+                    >
                       Edit
                     </button>
 
                     {/* Tombol Hapus untuk setiap pengguna */}
-                    <button onClick={() => handleDelete(user.id)} className="text-white bg-red-600 font-semibold py-1 px-3 rounded-lg ml-2 transition duration-300">
-                      Hapus
+                    <button
+                      onClick={() => handleDelete(user.id)}
+                      className="text-white bg-red-600 font-semibold py-1 px-3 rounded-lg ml-2 transition duration-300"
+                    >
+                      Delete
                     </button>
                   </td>
                 </tr>
               ))
             ) : (
               <tr>
-                <td colSpan="5" className="p-4 text-center text-white bg-gray-800">
-                  Tidak ada user ditemukan.
+                <td
+                  colSpan="5"
+                  className="p-4 text-center text-white bg-gray-800"
+                >
+                  No users found.
                 </td>
               </tr>
             )}
@@ -237,8 +267,13 @@ const UserData = () => {
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
           <div className="bg-white p-6 rounded-lg w-2/4">
             <div className="flex justify-between items-center mb-4">
-              <h2 className="text-2xl font-bold">{editFormData.id ? "Edit User" : "Tambah User Baru"}</h2>
-              <button className="text-xl font-bold" onClick={() => setShowModal(false)}>
+              <h2 className="text-2xl font-bold">
+                {editFormData.id ? "Edit User" : "Tambah User Baru"}
+              </h2>
+              <button
+                className="text-xl font-bold"
+                onClick={() => setShowModal(false)}
+              >
                 &times;
               </button>
             </div>
@@ -246,8 +281,22 @@ const UserData = () => {
             <form onSubmit={editFormData.id ? handleUpdate : handleSubmit}>
               {/* Nama */}
               <div className="mb-4">
-                <label className="block text-gray-700 font-bold">Nama</label>
-                <input type="text" name="name" value={editFormData.name || formData.name} onChange={editFormData.id ? (e) => setEditFormData({ ...editFormData, name: e.target.value }) : handleChange} className="w-full p-2 border rounded" />
+                <label className="block text-gray-700 font-bold">Name</label>
+                <input
+                  type="text"
+                  name="name"
+                  value={editFormData.name || formData.name}
+                  onChange={
+                    editFormData.id
+                      ? (e) =>
+                          setEditFormData({
+                            ...editFormData,
+                            name: e.target.value,
+                          })
+                      : handleChange
+                  }
+                  className="w-full p-2 border rounded"
+                />
               </div>
 
               {/* Email */}
@@ -257,51 +306,102 @@ const UserData = () => {
                   type="email"
                   name="email"
                   value={editFormData.email || formData.email}
-                  onChange={editFormData.id ? (e) => setEditFormData({ ...editFormData, email: e.target.value }) : handleChange}
+                  onChange={
+                    editFormData.id
+                      ? (e) =>
+                          setEditFormData({
+                            ...editFormData,
+                            email: e.target.value,
+                          })
+                      : handleChange
+                  }
                   className="w-full p-2 border rounded"
                 />
               </div>
 
               {/* Telepon */}
               <div className="mb-4">
-                <label className="block text-gray-700 font-bold">Telepon</label>
+                <label className="block text-gray-700 font-bold">Phone</label>
                 <input
                   type="text"
                   name="phone"
                   value={editFormData.phone || formData.phone}
-                  onChange={editFormData.id ? (e) => setEditFormData({ ...editFormData, phone: e.target.value }) : handleChange}
+                  onChange={
+                    editFormData.id
+                      ? (e) =>
+                          setEditFormData({
+                            ...editFormData,
+                            phone: e.target.value,
+                          })
+                      : handleChange
+                  }
                   className="w-full p-2 border rounded"
                 />
               </div>
 
               {/* Password */}
               <div className="mb-4">
-                <label className="block text-gray-700 font-bold">Kata Sandi</label>
+                <label className="block text-gray-700 font-bold">
+                  Password
+                </label>
                 <input
                   type="password"
                   name="password"
                   value={editFormData.password || formData.password}
-                  onChange={editFormData.id ? (e) => setEditFormData({ ...editFormData, password: e.target.value }) : handleChange}
+                  onChange={
+                    editFormData.id
+                      ? (e) =>
+                          setEditFormData({
+                            ...editFormData,
+                            password: e.target.value,
+                          })
+                      : handleChange
+                  }
                   className="w-full p-2 border rounded"
                 />
               </div>
 
               {/* Confirm Password */}
               <div className="mb-4">
-                <label className="block text-gray-700 font-bold">Konfirmasi Kata Sandi</label>
+                <label className="block text-gray-700 font-bold">
+                  Confirm Password
+                </label>
                 <input
                   type="password"
                   name="confirmPassword"
-                  value={editFormData.confirmPassword || formData.confirmPassword}
-                  onChange={editFormData.id ? (e) => setEditFormData({ ...editFormData, confirmPassword: e.target.value }) : handleChange}
+                  value={
+                    editFormData.confirmPassword || formData.confirmPassword
+                  }
+                  onChange={
+                    editFormData.id
+                      ? (e) =>
+                          setEditFormData({
+                            ...editFormData,
+                            confirmPassword: e.target.value,
+                          })
+                      : handleChange
+                  }
                   className="w-full p-2 border rounded"
                 />
               </div>
 
               {/* Peran */}
               <div className="mb-4">
-                <label className="block text-gray-700 font-bold">role</label>
-                <select name="role" value={editFormData.role || formData.role} onChange={editFormData.id ? (e) => setEditFormData({ ...editFormData, role: e.target.value }) : handleChange} className="w-full p-2 border rounded">
+                <label className="block text-gray-700 font-bold">Role</label>
+                <select
+                  name="role"
+                  value={editFormData.role || formData.role}
+                  onChange={
+                    editFormData.id
+                      ? (e) =>
+                          setEditFormData({
+                            ...editFormData,
+                            role: e.target.value,
+                          })
+                      : handleChange
+                  }
+                  className="w-full p-2 border rounded"
+                >
                   <option value="user">User</option>
                   <option value="admin">Admin</option>
                 </select>
@@ -309,7 +409,10 @@ const UserData = () => {
 
               {/* Tombol Submit */}
               <div className="mb-4 text-right">
-                <button type="submit" className="bg-blue-500 text-white py-2 px-4 rounded">
+                <button
+                  type="submit"
+                  className="bg-blue-500 text-white py-2 px-4 rounded"
+                >
                   {editFormData.id ? "Perbarui" : "Tambah"} User
                 </button>
               </div>

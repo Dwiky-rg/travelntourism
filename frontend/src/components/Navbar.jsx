@@ -75,8 +75,10 @@ const Navbar = () => {
 
   const navItems = [
     { name: "Home", href: "home" },
+    { name: "About Us", href: "about" },
     { name: "Destination", href: "destination" },
     { name: "Experience", href: "experience" },
+    { name: "FAQs", href: "faq" },
   ];
 
   const bookingItems = [
@@ -85,18 +87,27 @@ const Navbar = () => {
   ];
 
   const historyItems = [
-    { name: "Pesawat", path: "/pesawat/histori" },
+    { name: "Flight", path: "/pesawat/histori" },
     { name: "Hotel", path: "/hotel/histori" },
   ];
 
   const historyLink = isLoggedIn ? (
-    <button onClick={() => setIsHistoryDropdownOpen(!isHistoryDropdownOpen)} className="text-white hover:text-blue-500 flex items-center transition-all duration-300">
+    <button
+      onClick={() => setIsHistoryDropdownOpen(!isHistoryDropdownOpen)}
+      className="text-white hover:text-blue-500 flex items-center transition-all duration-300"
+    >
       History <FaChevronDown className="ml-2" />
     </button>
   ) : null;
 
   return (
-    <nav className={`fixed top-0 left-0 w-full p-2 z-50 transition-all duration-300 ${isScrolled ? "bg-black bg-opacity-50 backdrop-blur-md" : "bg-transparent"}`}>
+    <nav
+      className={`fixed top-0 left-0 w-full p-2 z-50 transition-all duration-300 ${
+        isScrolled
+          ? "bg-black bg-opacity-50 backdrop-blur-md"
+          : "bg-transparent"
+      }`}
+    >
       <div className="px-8 py-4 flex items-center justify-between">
         {/* Logo */}
         <div>
@@ -106,22 +117,33 @@ const Navbar = () => {
         {/* Desktop Menu */}
         <div className="hidden md:flex flex-1 justify-center items-center space-x-6">
           {navItems.map((item) => (
-            <button key={item.name} onClick={() => scrollToSection(item.href)} className="text-white hover:text-blue-500 transition-all duration-300">
+            <button
+              key={item.name}
+              onClick={() => scrollToSection(item.href)}
+              className="text-white hover:text-blue-500 transition-all duration-300"
+            >
               {item.name}
             </button>
           ))}
 
           {/* Dropdown Booking */}
           <div className="relative">
-            <button onClick={() => setIsBookingDropdownOpen(!isBookingDropdownOpen)} className="text-white hover:text-blue-500 flex items-center transition-all duration-300">
+            <button
+              onClick={() => setIsBookingDropdownOpen(!isBookingDropdownOpen)}
+              className="text-white hover:text-blue-500 flex items-center transition-all duration-300"
+            >
               Booking <FaChevronDown className="ml-2" />
             </button>
             {isBookingDropdownOpen && (
-              <div className="absolute bg-gray-700 mt-2 right-3 rounded shadow-lg w-36 text-center">
-                {" "}
+              <div className="absolute bg-gray-700 rounded shadow-lg w-24 text-center">
                 {/* Smaller width */}
                 {bookingItems.map((item) => (
-                  <Link key={item.name} to={item.path} className="block px-4 py-2 text-white hover:bg-blue-500 rounded transition-all duration-300">
+                  <Link
+                    key={item.name}
+                    to={item.path}
+                    onClick={() => setIsDropdownOpen(false)}
+                    className="block px-4 py-2 text-white hover:bg-blue-500 rounded transition-all duration-300"
+                  >
                     {item.name}
                   </Link>
                 ))}
@@ -129,19 +151,29 @@ const Navbar = () => {
             )}
           </div>
 
-          {/* History Link (Visible only when logged in) */}
-          {historyLink}
-          {isHistoryDropdownOpen && (
-            <div className="absolute bg-gray-700 top-16 right-96 rounded shadow-lg w-36 text-center">
-              {" "}
-              {/* Smaller width */}
-              {historyItems.map((item) => (
-                <Link key={item.name} to={item.path} className="block px-4 py-2 text-white hover:bg-blue-500 rounded transition-all duration-300">
-                  {item.name}
-                </Link>
-              ))}
-            </div>
-          )}
+          <div className="relative">
+            <button
+              onClick={() => setIsHistoryDropdownOpen(!isHistoryDropdownOpen)}
+              className="text-white hover:text-blue-500 flex items-center transition-all duration-300"
+            >
+              History <FaChevronDown className="ml-2" />
+            </button>
+            {isHistoryDropdownOpen && (
+              <div className="absolute bg-gray-700 rounded shadow-lg w-24 text-center">
+                {/* Smaller width */}
+                {historyItems.map((item) => (
+                  <Link
+                    key={item.name}
+                    to={item.path}
+                    onClick={() => setIsDropdownOpen(false)}
+                    className="block px-4 py-2 text-white hover:bg-blue-500 rounded transition-all duration-300"
+                  >
+                    {item.name}
+                  </Link>
+                ))}
+              </div>
+            )}
+          </div>
         </div>
 
         {/* Login/Logout and Profile */}
@@ -152,10 +184,16 @@ const Navbar = () => {
             </>
           ) : (
             <>
-              <Link to="/login" className="px-4 py-2 font-semibold text-white rounded-md border border-white hover:bg-white hover:text-black transition duration-300">
+              <Link
+                to="/login"
+                className="px-4 py-2 font-semibold text-white rounded-md border border-white hover:bg-white hover:text-black transition duration-300"
+              >
                 Login
               </Link>
-              <Link to="/register" className="px-4 py-2 font-semibold text-black border bg-white border-white rounded-md transition duration-300">
+              <Link
+                to="/register"
+                className="px-4 py-2 font-semibold text-black border bg-white border-white rounded-md transition duration-300"
+              >
                 Register
               </Link>
             </>
@@ -164,7 +202,10 @@ const Navbar = () => {
 
         {/* Mobile Hamburger Icon */}
         <div className="md:hidden cursor-pointer z-50">
-          <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-white text-2xl focus:outline-none mt-3">
+          <button
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="text-white text-2xl focus:outline-none mt-3"
+          >
             {isMenuOpen ? <FaTimes /> : <HiBars3BottomRight />}
           </button>
         </div>
@@ -175,20 +216,31 @@ const Navbar = () => {
         <div className="md:hidden fixed inset-x-0 top-0 rounded-xl bg-black bg-opacity-50 backdrop-blur-sm z-40 pt-5 gap-y-8 cursor-pointer max-h-screen overflow-y-auto m-3">
           <div className="max-w-screen-sm mx-auto rounded-lg p-4">
             {navItems.map((item) => (
-              <button key={item.name} onClick={() => scrollToSection(item.href)} className="block px-4 py-2 text-white hover:text-[26px] transition-all duration-300">
+              <button
+                key={item.name}
+                onClick={() => scrollToSection(item.href)}
+                className="block px-4 py-2 text-white hover:text-[26px] transition-all duration-300"
+              >
                 {item.name}
               </button>
             ))}
 
             {/* Dropdown Booking */}
             <div className="relative">
-              <button onClick={() => setIsBookingDropdownOpen(!isBookingDropdownOpen)} className="block w-full text-left px-4 py-2 text-white hover:text-[28px] focus:outline-none transition-all duration-300">
+              <button
+                onClick={() => setIsBookingDropdownOpen(!isBookingDropdownOpen)}
+                className="block w-full text-left px-4 py-2 text-white hover:text-[28px] focus:outline-none transition-all duration-300"
+              >
                 Booking <FaChevronDown className="inline ml-2" />
               </button>
               {isBookingDropdownOpen && (
                 <div>
                   {bookingItems.map((item) => (
-                    <Link key={item.name} to={item.path} className="block px-8 py-2 text-white transition-all duration-300">
+                    <Link
+                      key={item.name}
+                      to={item.path}
+                      className="block px-8 py-2 text-white transition-all duration-300"
+                    >
                       {item.name}
                     </Link>
                   ))}
@@ -198,14 +250,21 @@ const Navbar = () => {
 
             {/* History Link (Visible only when logged in) */}
             {isLoggedIn && (
-              <button onClick={() => setIsHistoryDropdownOpen(!isHistoryDropdownOpen)} className="block w-full text-left px-4 py-2 text-white hover:text-[28px] focus:outline-none transition-all duration-300">
+              <button
+                onClick={() => setIsHistoryDropdownOpen(!isHistoryDropdownOpen)}
+                className="block w-full text-left px-4 py-2 text-white hover:text-[28px] focus:outline-none transition-all duration-300"
+              >
                 History <FaChevronDown className="inline ml-2" />
               </button>
             )}
             {isHistoryDropdownOpen && (
               <div>
                 {historyItems.map((item) => (
-                  <Link key={item.name} to={item.path} className="block px-8 py-2 text-white transition-all duration-300">
+                  <Link
+                    key={item.name}
+                    to={item.path}
+                    className="block px-8 py-2 text-white transition-all duration-300"
+                  >
                     {item.name}
                   </Link>
                 ))}
@@ -215,19 +274,31 @@ const Navbar = () => {
             {/* Login/Logout */}
             {isLoggedIn ? (
               <>
-                <Link to="/profile" className="block w-full text-white px-4 py-2 mt-4 text-center">
+                <Link
+                  to="/profile"
+                  className="block w-full text-white px-4 py-2 mt-4 text-center"
+                >
                   Edit Profile
                 </Link>
-                <button onClick={handleLogout} className="block w-full text-white px-4 py-2 mt-4">
+                <button
+                  onClick={handleLogout}
+                  className="block w-full text-white px-4 py-2 mt-4"
+                >
                   Logout
                 </button>
               </>
             ) : (
               <>
-                <Link to="/login" className="block w-full text-white text-center px-4 py-2 mt-4">
+                <Link
+                  to="/login"
+                  className="block w-full text-white text-center px-4 py-2 mt-4"
+                >
                   Login
                 </Link>
-                <Link to="/register" className="block w-full text-black bg-white px-4 py-2 mt-4">
+                <Link
+                  to="/register"
+                  className="block w-full text-black bg-white px-4 py-2 mt-4"
+                >
                   Register
                 </Link>
               </>

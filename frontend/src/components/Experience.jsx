@@ -92,7 +92,6 @@ function Experience() {
           </div>
         ))}
       </div>
-      <Footer />
     </section>
   );
 }

@@ -56,39 +56,49 @@ const ConfirmPayment = () => {
     <div className="w-full mx-auto bg-[#041E31] p-10 rounded-lg h-auto">
       <div className="flex items-center mb-4">
         <RiMoneyDollarCircleFill className="text-white text-3xl mr-2" />
-        <h1 className="text-2xl font-bold text-white">Booking Management</h1>
+        <h1 className="text-2xl font-bold text-white">
+          Booking Flight Management
+        </h1>
       </div>
       <div className="mt-8">
         <h2 className="text-white text-xl font-bold mb-4">Booking Data</h2>
         <table className="min-w-full text-sm text-left text-gray-500">
           <thead className="bg-gray-700 text-white">
             <tr>
-              <th className="px-4 py-2 text-left">No</th>
-              <th className="px-4 py-2 text-left">Pesawat ID</th>
-              <th className="px-4 py-2 text-left">Name</th>
-              <th className="px-4 py-2 text-left">Flight</th>
-              <th className="px-4 py-2 text-left">Amount</th>
-              <th className="px-4 py-2 text-left">Departure</th>
-              <th className="px-4 py-2 text-left">Arrival</th>
-              <th className="px-4 py-2 text-left">Status</th>
+              <th className="px-4 py-2">No</th>
+              <th className="px-4 py-2">Plane ID</th>
+              <th className="px-4 py-2">Name</th>
+              <th className="px-4 py-2">Flight</th>
+              <th className="px-4 py-2">Amount</th>
+              <th className="px-4 py-2">Departure</th>
+              <th className="px-4 py-2">Arrival</th>
+              <th className="px-4 py-2">Status</th>
             </tr>
           </thead>
           <tbody>
-            {payments.map((payment) => (
-              <tr key={payment.id} className="border-b">
-                <td className="px-4 py-2 text-white">{payment.nomor}</td>
-                <td className="px-4 py-2 text-white text-center">{payment.pesawatId}</td>
-                <td className="px-4 py-2 text-white">{payment.user}</td>
-                <td className="px-4 py-2 text-white">{payment.jadwal}</td>
-                <td className="px-4 py-2 text-white">Rp {payment.amount.toLocaleString()}</td>
-                <td className="px-4 py-2 text-white">{payment.departureTime}</td>
-                <td className="px-4 py-2 text-white">{payment.arrivalTime}</td>
-                <td
-                  className={`px-4 py-2 text-white text-center ${
-                    payment.status === "terima" ? "bg-green-500 rounded-md text-white" : payment.status === "proses" ? "bg-yellow-500 rounded-md text-white" : payment.status === "ditolak" ? "bg-red-500 rounded-md text-white" : ""
-                  }`}
-                >
-                  {payment.status}
+            {payments.map((payment, index) => (
+              <tr key={payment.id} className="border-b text-white">
+                <td className="px-4 py-2">{index + 1}</td>
+                <td className="px-4 py-2">{payment.pesawatId}</td>
+                <td className="px-4 py-2">{payment.user}</td>
+                <td className="px-4 py-2">{payment.jadwal}</td>
+                <td className="px-4 py-2">
+                  Rp {payment.amount ? payment.amount.toLocaleString() : "0"}
+                </td>
+                <td className="px-4 py-2">{payment.departureTime}</td>
+                <td className="px-4 py-2">{payment.arrivalTime}</td>
+                <td className="p-4 text-left">
+                  <span
+                    className={`px-4 py-2 rounded-md text-white ${
+                      payment.status === "terima"
+                        ? "bg-green-500"
+                        : payment.status === "proses"
+                        ? "bg-yellow-500"
+                        : "bg-red-500"
+                    }`}
+                  >
+                    {payment.status || "Unknown"}
+                  </span>
                 </td>
               </tr>
             ))}

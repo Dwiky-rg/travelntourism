@@ -14,11 +14,7 @@ const router = express.Router();
 router.get("/jadwal-penerbangan", getAllJadwalPenerbangan);
 router.get("/jadwal-penerbangan/:id", getJadwalPenerbanganById);
 router.post("/jadwal-penerbangan/add", createJadwalPenerbangan);
-router.put(
-  "/jadwal-penerbangan/update/:id",
-
-  updateJadwalPenerbangan
-);
+router.put("/jadwal-penerbangan/update/:id", updateJadwalPenerbangan);
 router.delete("/jadwal-penerbangan/:id", deleteJadwalPenerbangan);
 router.delete("/jadwal-penerbangan/search", searchJadwalPenerbangan);
 

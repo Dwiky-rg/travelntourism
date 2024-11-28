@@ -45,14 +45,18 @@ const PaymentPage = () => {
       });
 
       if (!response.ok) {
-        throw new Error(`Failed to update payment status: ${response.statusText}`);
+        throw new Error(
+          `Failed to update payment status: ${response.statusText}`
+        );
       }
 
       const data = await response.json();
       console.log("Payment status updated:", data);
 
       // Refresh payments data after status update
-      const updatedPayments = payments.map((payment) => (payment.id === paymentId ? { ...payment, status: status } : payment));
+      const updatedPayments = payments.map((payment) =>
+        payment.id === paymentId ? { ...payment, status: status } : payment
+      );
       setPayments(updatedPayments);
     } catch (error) {
       console.error("Error updating payment status:", error);
@@ -83,7 +87,9 @@ const PaymentPage = () => {
     <div className="w-full mx-auto bg-[#041E31] p-10 rounded-lg h-auto">
       <div className="flex items-center mb-4">
         <RiMoneyDollarCircleFill className="text-white text-3xl mr-2" />
-        <h1 className="text-2xl font-bold text-white">Payment Management</h1>
+        <h1 className="text-2xl font-bold text-white">
+          Flight Payment Management
+        </h1>
       </div>
       <div className="mt-8">
         <h2 className="text-white text-xl font-bold mb-4">Payment Data</h2>
@@ -100,10 +106,15 @@ const PaymentPage = () => {
           </thead>
           <tbody>
             {payments.map((payment, index) => (
-              <tr key={index} className="border-b">
+              <tr key={index} className="border-b text-white">
                 <td className="px-4 py-2">{index + 1}</td>
                 <td className="px-4 py-2">
-                  <button className="text-blue-500" onClick={() => openModal(`/images-payment-airlines/${payment.receipt}`)}>
+                  <button
+                    className="text-blue-500"
+                    onClick={() =>
+                      openModal(`/images-payment-airlines/${payment.receipt}`)
+                    }
+                  >
                     Lihat Bukti
                   </button>
                 </td>
@@ -121,18 +132,38 @@ const PaymentPage = () => {
                       })
                     : "N/A"}
                 </td>
-                <td className="px-4 py-2 r">
-                  <span className={`status-label ${payment.status === "proses" ? "bg-yellow-500 rounded-md p-2 text-white" : payment.status === "terima" ? "bg-green-500 rounded-md p-2 text-white" : "bg-red-500 rounded-md p-2 text-white"}`}>
+                <td className="px-4 py-2">
+                  <span
+                    className={`status-label ${
+                      payment.status === "proses"
+                        ? "bg-yellow-500 rounded-md p-2 text-white"
+                        : payment.status === "terima"
+                        ? "bg-green-500 rounded-md p-2 text-white"
+                        : "bg-red-500 rounded-md p-2 text-white"
+                    }`}
+                  >
                     {payment.status}
                   </span>
                 </td>
-                <td className="px-4 py-2 text-center">
+                <td className="p-4">
                   {payment.status === "proses" ? (
                     <>
-                      <button className="px-3 py-1 bg-blue-500 text-white rounded-md" onClick={() => updatePaymentStatus(payment.id, "terima")} disabled={payment.status !== "proses"}>
+                      <button
+                        className="px-3 py-1 bg-blue-500 text-white rounded-md"
+                        onClick={() =>
+                          updatePaymentStatus(payment.id, "terima")
+                        }
+                        disabled={payment.status !== "proses"}
+                      >
                         Accept
                       </button>
-                      <button className="px-3 py-1 bg-red-500 text-white rounded-md ml-2" onClick={() => updatePaymentStatus(payment.id, "ditolak")} disabled={payment.status !== "proses"}>
+                      <button
+                        className="px-3 py-1 bg-red-500 text-white rounded-md ml-2"
+                        onClick={() =>
+                          updatePaymentStatus(payment.id, "ditolak")
+                        }
+                        disabled={payment.status !== "proses"}
+                      >
                         Reject
                       </button>
                     </>
@@ -150,14 +181,21 @@ const PaymentPage = () => {
       {isModalOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
           <div className="bg-white p-4 rounded-lg max-w-xl w-full">
-            {" "}
             {/* Adjust max-w-sm for smaller modal */}
             <div className="relative">
-              <button onClick={closeModal} className="absolute top-0 right-0 bg-red-500 text-white p-2 rounded-full">
+              <button
+                onClick={closeModal}
+                className="absolute top-0 right-0 bg-red-500 text-white p-2 rounded-full"
+              >
                 <RiCloseFill className="text-white text-xl" />
               </button>
               {/* Image with adjusted size */}
-              <img src={receiptImage} alt="Receipt" className="max-w-full h-auto mx-auto" /> {/* Increased size */}
+              <img
+                src={receiptImage}
+                alt="Receipt"
+                className="max-w-full h-auto mx-auto"
+              />{" "}
+              {/* Increased size */}
             </div>
           </div>
         </div>

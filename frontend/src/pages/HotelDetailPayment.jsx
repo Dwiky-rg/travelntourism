@@ -48,7 +48,9 @@ const HotelDetailPayment = () => {
   useEffect(() => {
     const fetchHotel = async () => {
       try {
-        const response = await axios.get(`${import.meta.env.VITE_API_URL}/hotel/${id}`);
+        const response = await axios.get(
+          `${import.meta.env.VITE_API_URL}/hotel/${id}`
+        );
         setHotel(response.data);
       } catch (error) {
         console.error("Failed to fetch hotel data:", error);
@@ -61,9 +63,17 @@ const HotelDetailPayment = () => {
   const rooms = hotel
     ? [
         { type: "Single Room", basePrice: hotel.price, extraCharge: 0 },
-        { type: "Double Room", basePrice: hotel.price * 1.2, extraCharge: 0.05 },
+        {
+          type: "Double Room",
+          basePrice: hotel.price * 1.2,
+          extraCharge: 0.05,
+        },
         { type: "Twin Room", basePrice: hotel.price * 1.3, extraCharge: 0.1 },
-        { type: "Superior Room", basePrice: hotel.price * 1.5, extraCharge: 0.25 },
+        {
+          type: "Superior Room",
+          basePrice: hotel.price * 1.5,
+          extraCharge: 0.25,
+        },
         { type: "Deluxe Room", basePrice: hotel.price * 1.8, extraCharge: 0.4 },
         { type: "Family Room", basePrice: hotel.price * 2.0, extraCharge: 0.6 },
       ]
@@ -160,11 +170,15 @@ const HotelDetailPayment = () => {
         console.log(pair[0] + ": " + pair[1]);
       }
 
-      const response = await axios.post("http://localhost:5000/hotel/book/hotel/create", formData, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await axios.post(
+        "http://localhost:5000/hotel/book/hotel/create",
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
       if (response.status === 201) {
         Swal.fire({
@@ -205,15 +219,30 @@ const HotelDetailPayment = () => {
           <div className="flex space-x-4">
             <div className="flex-1">
               <label className="block font-medium mb-1">Full Name</label>
-              <input type="text" value={userDetails?.name || "John Doe"} className="w-full border rounded-lg p-2" readOnly />
+              <input
+                type="text"
+                value={userDetails?.name || "John Doe"}
+                className="w-full border rounded-lg p-2"
+                readOnly
+              />
             </div>
             <div className="flex-1">
               <label className="block font-medium mb-1">Email</label>
-              <input type="email" value={userDetails?.email || "user@example.com"} className="w-full border rounded-lg p-2" readOnly />
+              <input
+                type="email"
+                value={userDetails?.email || "user@example.com"}
+                className="w-full border rounded-lg p-2"
+                readOnly
+              />
             </div>
             <div className="flex-1">
               <label className="block font-medium mb-1">Phone</label>
-              <input type="text" value={userDetails?.phone || "081234567890"} className="w-full border rounded-lg p-2" readOnly />
+              <input
+                type="text"
+                value={userDetails?.phone || "081234567890"}
+                className="w-full border rounded-lg p-2"
+                readOnly
+              />
             </div>
           </div>
         </div>
@@ -228,7 +257,11 @@ const HotelDetailPayment = () => {
             </div>
             <div className="mt-6">
               <label className="font-medium">Select Room Type</label>
-              <select className="w-full p-2 mt-2 border rounded-lg" onChange={handleRoomChange} value={selectedRoom?.type || ""}>
+              <select
+                className="w-full p-2 mt-2 border rounded-lg"
+                onChange={handleRoomChange}
+                value={selectedRoom?.type || ""}
+              >
                 <option value="">Select Room</option>
                 {rooms.map((room, index) => (
                   <option key={index} value={room.type}>
@@ -239,33 +272,56 @@ const HotelDetailPayment = () => {
             </div>
             <div className="mt-6">
               <label className="font-medium">Check-In Date</label>
-              <input type="date" className="w-full p-2 mt-2 border rounded-lg" onChange={handleCheckInChange} value={checkInDate} />
+              <input
+                type="date"
+                className="w-full p-2 mt-2 border rounded-lg"
+                onChange={handleCheckInChange}
+                value={checkInDate}
+              />
             </div>
             <div className="mt-6">
               <label className="font-medium">Check-Out Date</label>
-              <input type="date" className="w-full p-2 mt-2 border rounded-lg" onChange={handleCheckOutChange} value={checkOutDate} />
+              <input
+                type="date"
+                className="w-full p-2 mt-2 border rounded-lg"
+                onChange={handleCheckOutChange}
+                value={checkOutDate}
+              />
             </div>
 
             <div className="mt-6">
-              <h3 className="text-xl font-bold">Total Price: {formatPrice(totalPrice)}</h3>
+              <h3 className="text-xl font-bold">
+                Total Price: {formatPrice(totalPrice)}
+              </h3>
             </div>
 
             <div className="mt-6">
               <label className="font-medium">Payment Receipt</label>
-              <input type="file" onChange={(e) => setPaymentReceipt(e.target.files[0])} className="w-full p-2 mt-2 border rounded-lg" />
+              <input
+                type="file"
+                onChange={(e) => setPaymentReceipt(e.target.files[0])}
+                className="w-full p-2 mt-2 border rounded-lg"
+              />
             </div>
 
             <div className="mt-6">
               <label className="font-medium">Bank</label>
-              <select className="w-full p-2 mt-2 border rounded-lg" onChange={(e) => setSelectedBank(e.target.value)} value={selectedBank}>
-                <option value="">Select Bank</option>
-                <option value="BRI">Bank BRI</option>
-                <option value="BCA">Bank BCA</option>
-                <option value="BNI">Bank BNI</option>
+              <select
+                className="w-full p-2 mt-2 border rounded-lg"
+                onChange={(e) => setSelectedBank(e.target.value)}
+                value={selectedBank}
+              >
+                <option value="">Select Payment Method</option>
+                <option value="bni">BNI - 0987654321 </option>
+                <option value="bca">BCA - 1237916512</option>
+                <option value="bri">BRI - 1739754271</option>
               </select>
             </div>
 
-            <button type="submit" className="mt-6 bg-blue-500 text-white p-3 rounded-lg w-full">
+            <button
+              type="submit"
+              className="mt-6 bg-blue-500 text-white p-3 rounded-lg w-full"
+            >
               Confirm Booking
             </button>
           </div>

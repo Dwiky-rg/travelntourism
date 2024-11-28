@@ -55,39 +55,51 @@ const ConfirmBookingHotel = () => {
     <div className="w-full mx-auto bg-[#041E31] p-10 rounded-lg h-auto">
       <div className="flex items-center mb-4">
         <RiMoneyDollarCircleFill className="text-white text-3xl mr-2" />
-        <h1 className="text-2xl font-bold text-white">Booking Management</h1>
+        <h1 className="text-2xl font-bold text-white">
+          Booking Hotel Management
+        </h1>
       </div>
       <div className="mt-8">
         <h2 className="text-white text-xl font-bold mb-4">Booking Data</h2>
         <table className="min-w-full text-sm text-left text-gray-500">
           <thead className="bg-gray-700 text-white">
             <tr>
-              <th className="px-4 py-2 text-left">No</th>
-              <th className="px-4 py-2 text-left">Hotel</th>
-              <th className="px-4 py-2 text-left">Name</th>
-              <th className="px-4 py-2 text-left">Rooms</th>
-              <th className="px-4 py-2 text-left">Check-In</th>
-              <th className="px-4 py-2 text-left">Check-Out</th>
-              <th className="px-4 py-2 text-left">Total Price</th>
-              <th className="px-4 py-2 text-left">Status</th>
+              <th className="px-4 py-2">No</th>
+              <th className="px-4 py-2">Hotel</th>
+              <th className="px-4 py-2">Name</th>
+              <th className="px-4 py-2">Rooms</th>
+              <th className="px-4 py-2">Check-In</th>
+              <th className="px-4 py-2">Check-Out</th>
+              <th className="px-4 py-2">Total Price</th>
+              <th className="px-4 py-2">Status</th>
             </tr>
           </thead>
           <tbody>
             {bookings.map((booking) => (
-              <tr key={booking.id} className="border-b">
-                <td className="px-4 py-2 text-white">{booking.nomor}</td>
-                <td className="px-4 py-2 text-white">{booking.hotel}</td>
-                <td className="px-4 py-2 text-white">{booking.user}</td>
-                <td className="px-4 py-2 text-white">{booking.rooms}</td>
-                <td className="px-4 py-2 text-white">{booking.checkInDate}</td>
-                <td className="px-4 py-2 text-white">{booking.checkOutDate}</td>
-                <td className="px-4 py-2 text-white">Rp {booking.amount.toLocaleString()}</td>
-                <td
-                  className={`px-4 py-2 text-white text-center ${
-                    booking.status === "terima" ? "bg-green-500 rounded-md text-white" : booking.status === "proses" ? "bg-yellow-500 rounded-md text-white" : booking.status === "ditolak" ? "bg-red-500 rounded-md text-white" : ""
-                  }`}
-                >
-                  {booking.status}
+              <tr key={booking.id} className="border-b text-white">
+                <td className="px-4 py-2">{booking.nomor}</td>
+                <td className="px-4 py-2">{booking.hotel}</td>
+                <td className="px-4 py-2">{booking.user}</td>
+                <td className="px-4 py-2">{booking.rooms}</td>
+                <td className="px-4 py-2">{booking.checkInDate}</td>
+                <td className="px-4 py-2">{booking.checkOutDate}</td>
+                <td className="px-4 py-2">
+                  Rp {booking.amount.toLocaleString()}
+                </td>
+                <td className="p-4 text-left">
+                  <span
+                    className={`px-4 py-2 rounded-md text-white ${
+                      booking.status === "terima"
+                        ? "bg-green-500"
+                        : booking.status === "proses"
+                        ? "bg-yellow-500"
+                        : booking.status === "ditolak"
+                        ? "bg-red-500"
+                        : "bg-gray-500"
+                    }`}
+                  >
+                    {booking.status || "Unknown"}
+                  </span>
                 </td>
               </tr>
             ))}

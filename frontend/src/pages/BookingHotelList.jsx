@@ -123,7 +123,7 @@ const BookingHotelList = () => {
   if (error) return <p className="text-red-500">{error}</p>;
 
   return (
-    <div className="container mx-auto p-4 mt-20">
+    <section className="relative min-h-screen flex flex-col items-center bg-gray-100 text-black p-8 mt-14">
       <h1 className="text-2xl font-bold mb-4">My Hotel Bookings</h1>
       {bookings.length === 0 ? (
         <p>No bookings found.</p>
@@ -185,7 +185,7 @@ const BookingHotelList = () => {
           </table>
         </div>
       )}
-    </div>
+    </section>
   );
 };
 

@@ -148,7 +148,11 @@ const AddHotel = () => {
     }
   };
 
-  const formatPrice = (price) => new Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR" }).format(price);
+  const formatPrice = (price) =>
+    new Intl.NumberFormat("id-ID", {
+      style: "currency",
+      currency: "IDR",
+    }).format(price);
 
   // Handle Image Change
   const handleImageChange = (e) => {
@@ -169,7 +173,10 @@ const AddHotel = () => {
       </div>
 
       {/* Add New Hotel Button */}
-      <button onClick={() => openModal()} className="w-full bg-green-500 text-white font-bold py-2 px-4 rounded hover:bg-green-600 mb-4">
+      <button
+        onClick={() => openModal()}
+        className="w-full bg-green-500 text-white font-bold py-2 px-4 rounded hover:bg-green-600 mb-4"
+      >
         Add New Hotel
       </button>
 
@@ -179,30 +186,40 @@ const AddHotel = () => {
         <table className="min-w-full text-sm text-left text-gray-500">
           <thead className="bg-gray-700 text-white">
             <tr>
-              <th className="p-2">Hotel Name</th>
-              <th className="p-2">Hotel Image</th>
-              <th className="p-2">Location</th>
-              <th className="p-2">Price</th>
-              <th className="p-2">Rating</th>
-              <th className="p-2">Actions</th>
+              <th className="px-4 py-2">Hotel Name</th>
+              <th className="px-4 py-2">Hotel Image</th>
+              <th className="px-4 py-2">Location</th>
+              <th className="px-4 py-2">Price</th>
+              <th className="px-4 py-2">Rating</th>
+              <th className="px-4 py-2">Actions</th>
             </tr>
           </thead>
           <tbody>
             {hotels.length > 0 ? (
               hotels.map((hotel) => (
-                <tr key={hotel.id} className="bg-gray-800 text-white">
-                  <td className="p-2">{hotel.name}</td>
-                  <td className="p-2">
-                    <img src={`/images-hotels/${hotel.image}`} alt="logo" className="w-16 h-16 object-contain " />
+                <tr key={hotel.id} className="border-b text-white">
+                  <td className="px-4 py-2">{hotel.name}</td>
+                  <td className="px-4 py-2">
+                    <img
+                      src={`/images-hotels/${hotel.image}`}
+                      alt="logo"
+                      className="w-8 h-8 object-contain "
+                    />
                   </td>
-                  <td className="p-2">{hotel.location}</td>
-                  <td className="p-2">{formatPrice(hotel.price)}</td>
-                  <td className="p-2">{hotel.rating}</td>
-                  <td className="p-2 flex space-x-2 ">
-                    <button onClick={() => openModal(hotel)} className="bg-yellow-500 text-white px-4 py-2 rounded">
+                  <td className="px-4 py-2">{hotel.location}</td>
+                  <td className="px-4 py-2">{formatPrice(hotel.price)}</td>
+                  <td className="px-4 py-2">{hotel.rating}</td>
+                  <td cclassName="p-4 text-center flex">
+                    <button
+                      onClick={() => openModal(hotel)}
+                      className="bg-blue-500 text-white px-2 py-1 rounded"
+                    >
                       Edit
                     </button>
-                    <button onClick={() => handleDelete(hotel.id)} className="bg-red-500 text-white px-4 py-2 rounded">
+                    <button
+                      onClick={() => handleDelete(hotel.id)}
+                      className="bg-red-500 text-white px-2 py-1 rounded ml-2"
+                    >
                       Delete
                     </button>
                   </td>
@@ -224,7 +241,9 @@ const AddHotel = () => {
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
           <div className="bg-white p-6 rounded-lg w-2/4">
             <div className="flex justify-between items-center mb-4">
-              <h2 className="text-2xl font-bold">{isEditing ? "Edit Hotel" : "Add New Hotel"}</h2>
+              <h2 className="text-2xl font-bold">
+                {isEditing ? "Edit Hotel" : "Add New Hotel"}
+              </h2>
               <button onClick={closeModal} className="text-xl font-bold">
                 &times;
               </button>
@@ -239,51 +258,110 @@ const AddHotel = () => {
               <div className="grid grid-cols-2 gap-4">
                 {/* Hotel Image Preview */}
                 <div className="mb-4">
-                  <label className="block text-gray-700 font-bold">Hotel Image</label>
-                  <input type="file" className="w-full p-2 border rounded" accept="image/*" onChange={handleImageChange} />
+                  <label className="block text-gray-700 font-bold">
+                    Hotel Image
+                  </label>
+                  <input
+                    type="file"
+                    className="w-full p-2 border rounded"
+                    accept="image/*"
+                    onChange={handleImageChange}
+                  />
                   {/* Show image preview */}
                   {imagePreview && (
                     <div className="mt-4">
-                      <img src={imagePreview} alt="Image Preview" className="w-full h-40 object-cover rounded-md" />
+                      <img
+                        src={imagePreview}
+                        alt="Image Preview"
+                        className="w-full h-40 object-cover rounded-md"
+                      />
                     </div>
                   )}
                   {/* Show current image if editing */}
                   {isEditing && hotelData.currentImage && !imagePreview && (
                     <div className="mt-4">
-                      <img src={hotelData.currentImage} alt="Current Image" className="w-full h-40 object-cover rounded-md" />
+                      <img
+                        src={hotelData.currentImage}
+                        alt="Current Image"
+                        className="w-full h-40 object-cover rounded-md"
+                      />
                     </div>
                   )}
                 </div>
 
                 {/* Hotel Name */}
                 <div className="mb-4">
-                  <label className="block text-gray-700 font-bold">Hotel Name</label>
-                  <input type="text" className="w-full p-2 border rounded" value={hotelData.name} onChange={(e) => setHotelData({ ...hotelData, name: e.target.value })} />
+                  <label className="block text-gray-700 font-bold">
+                    Hotel Name
+                  </label>
+                  <input
+                    type="text"
+                    className="w-full p-2 border rounded"
+                    value={hotelData.name}
+                    onChange={(e) =>
+                      setHotelData({ ...hotelData, name: e.target.value })
+                    }
+                  />
                 </div>
 
                 {/* Location */}
                 <div className="mb-4">
-                  <label className="block text-gray-700 font-bold">Location</label>
-                  <input type="text" className="w-full p-2 border rounded" value={hotelData.location} onChange={(e) => setHotelData({ ...hotelData, location: e.target.value })} />
+                  <label className="block text-gray-700 font-bold">
+                    Location
+                  </label>
+                  <input
+                    type="text"
+                    className="w-full p-2 border rounded"
+                    value={hotelData.location}
+                    onChange={(e) =>
+                      setHotelData({ ...hotelData, location: e.target.value })
+                    }
+                  />
                 </div>
 
                 {/* Price */}
                 <div className="mb-4">
                   <label className="block text-gray-700 font-bold">Price</label>
-                  <input type="number" className="w-full p-2 border rounded" value={hotelData.price} onChange={(e) => setHotelData({ ...hotelData, price: e.target.value })} />
+                  <input
+                    type="number"
+                    className="w-full p-2 border rounded"
+                    value={hotelData.price}
+                    onChange={(e) =>
+                      setHotelData({ ...hotelData, price: e.target.value })
+                    }
+                  />
                 </div>
 
                 <div className="mb-4">
-                  <label className="block text-gray-700 font-bold">Rating</label>
-                  <input type="number" min="0" max="5" step="0.1" value={hotelData.rating} onChange={(e) => setHotelData({ ...hotelData, rating: e.target.value })} className="w-full p-2 border rounded" />
+                  <label className="block text-gray-700 font-bold">
+                    Rating
+                  </label>
+                  <input
+                    type="number"
+                    min="0"
+                    max="5"
+                    step="0.1"
+                    value={hotelData.rating}
+                    onChange={(e) =>
+                      setHotelData({ ...hotelData, rating: e.target.value })
+                    }
+                    className="w-full p-2 border rounded"
+                  />
                 </div>
               </div>
 
               <div className="flex justify-end space-x-4">
-                <button type="button" onClick={closeModal} className="px-4 py-2 bg-gray-400 text-white rounded">
+                <button
+                  type="button"
+                  onClick={closeModal}
+                  className="px-4 py-2 bg-gray-400 text-white rounded"
+                >
                   Cancel
                 </button>
-                <button type="submit" className="px-4 py-2 bg-blue-500 text-white rounded">
+                <button
+                  type="submit"
+                  className="px-4 py-2 bg-blue-500 text-white rounded"
+                >
                   Save
                 </button>
               </div>

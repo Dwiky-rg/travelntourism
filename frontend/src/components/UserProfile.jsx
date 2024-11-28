@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FaTimes, FaEnvelope } from "react-icons/fa";
 import axios from "axios";
-import baliImage from "../assets/bali.jpg";
+import userImage from "../assets/user.png";
 
 const UserProfile = ({ isMobile }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -13,7 +13,7 @@ const UserProfile = ({ isMobile }) => {
     birthDate: "",
     phone: "",
     email: "",
-    profileImage: "", // Gambar profil pengguna
+    profileImage: "",
   });
   const navigate = useNavigate(); // Hook for navigation
 
@@ -93,10 +93,22 @@ const UserProfile = ({ isMobile }) => {
   return isLoggedIn ? (
     <>
       <div className="relative inline-block">
-        <div className={`relative flex items-center ${isMobile ? "w-16 h-16" : "w-[180px] left-28"}`}>
-          <FaEnvelope className="text-white mr-4" /> {/* Icon message */}
+        <div
+          className={`relative flex items-center ${
+            isMobile ? "w-16 h-16" : "w-[180px] left-28"
+          }`}
+        >
           <div className="relative">
-            <img src={userDetails.image ? `/images-users/${userDetails.image}` : baliImage} alt="User Profile" className="rounded-full w-8 h-8 object-cover cursor-pointer" onClick={handleProfileClick} />
+            <img
+              src={
+                userDetails.image
+                  ? `/images-users/${userDetails.image}`
+                  : userImage
+              }
+              alt="User Profile"
+              className="rounded-full w-8 h-8 object-cover cursor-pointer"
+              onClick={handleProfileClick}
+            />
           </div>
         </div>
 
@@ -110,23 +122,43 @@ const UserProfile = ({ isMobile }) => {
               onClick={(e) => e.stopPropagation()} // Prevent closing modal when clicking inside
             >
               <div className="text-center">
-                <h2 className="text-xl font-semibold text-gray-800 mb-4">User Profile</h2>
+                <h2 className="text-xl font-semibold text-gray-800 mb-4">
+                  User Profile
+                </h2>
                 <div className="mb-4">
-                  <img src={userDetails.image ? `/images-users/${userDetails.image}` : baliImage} alt="User Profile" className="rounded-full w-24 h-24 object-cover mx-auto mb-4" />
+                  <img
+                    src={
+                      userDetails.image
+                        ? `/images-users/${userDetails.image}`
+                        : userImage
+                    }
+                    alt="User Profile"
+                    className="rounded-full w-24 h-24 object-cover mx-auto mb-4"
+                  />
                   <p className="text-lg text-gray-600">{userDetails.name}</p>
                   <p className="text-sm text-gray-500">{userDetails.email}</p>
                 </div>
               </div>
               <div className="mt-4 space-y-3">
-                <Link to="/profile" className="block text-center text-blue-600 hover:text-blue-800 underline" onClick={handleCloseModal}>
+                <Link
+                  to="/profile"
+                  className="block text-center text-blue-600 hover:text-blue-800 underline"
+                  onClick={handleCloseModal}
+                >
                   Edit Profile
                 </Link>
 
-                <button onClick={handleLogout} className="w-full text-center text-white bg-red-500 px-4 py-2 rounded-lg hover:bg-red-600 transition-all duration-300 shadow-sm">
+                <button
+                  onClick={handleLogout}
+                  className="w-full text-center text-white bg-red-500 px-4 py-2 rounded-lg hover:bg-red-600 transition-all duration-300 shadow-sm"
+                >
                   Logout
                 </button>
               </div>
-              <button onClick={handleCloseModal} className="absolute top-2 right-2 cursor-pointer text-2xl hover:text-red-500 transition duration-300">
+              <button
+                onClick={handleCloseModal}
+                className="absolute top-2 right-2 cursor-pointer text-2xl hover:text-red-500 transition duration-300"
+              >
                 <FaTimes />
               </button>
             </div>
@@ -135,11 +167,25 @@ const UserProfile = ({ isMobile }) => {
       </div>
     </>
   ) : (
-    <div className={`flex ${isMobile ? "flex-col items-center" : "space-x-2 w-[180px]"}`}>
-      <Link to="/login" className={`${isMobile ? "w-full text-center" : ""} text-blue-500 border border-blue-500 px-4 py-1 rounded hover:bg-blue-500 hover:text-white transition-all duration-300`}>
+    <div
+      className={`flex ${
+        isMobile ? "flex-col items-center" : "space-x-2 w-[180px]"
+      }`}
+    >
+      <Link
+        to="/login"
+        className={`${
+          isMobile ? "w-full text-center" : ""
+        } text-blue-500 border border-blue-500 px-4 py-1 rounded hover:bg-blue-500 hover:text-white transition-all duration-300`}
+      >
         Login
       </Link>
-      <Link to="/register" className={`${isMobile ? "w-full text-center mt-2" : ""} text-white bg-blue-500 px-4 py-1 rounded hover:bg-transparent hover:text-blue-500 hover:border hover:border-blue-500 transition-all duration-300`}>
+      <Link
+        to="/register"
+        className={`${
+          isMobile ? "w-full text-center mt-2" : ""
+        } text-white bg-blue-500 px-4 py-1 rounded hover:bg-transparent hover:text-blue-500 hover:border hover:border-blue-500 transition-all duration-300`}
+      >
         Register
       </Link>
     </div>

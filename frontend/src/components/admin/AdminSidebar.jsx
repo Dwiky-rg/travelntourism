@@ -11,11 +11,19 @@ const NavItem = ({ to, icon: Icon, label, collapsed, isActive, onClick }) => (
   <NavLink
     to={to}
     onClick={onClick} // Fungsi untuk menandai item yang aktif
-    className={({ isActive: linkIsActive }) => `flex items-center font-poppins uppercase font-[400] p-3 transition-all duration-200 ${isActive || linkIsActive ? "bg-[#4880FF] rounded-lg" : "rounded"} ${collapsed ? "justify-center" : ""}`}
+    className={({ isActive: linkIsActive }) =>
+      `flex items-center font-poppins uppercase font-[400] p-3 transition-all duration-200 ${
+        isActive || linkIsActive ? "bg-[#4880FF] rounded-lg" : "rounded"
+      } ${collapsed ? "justify-center" : ""}`
+    }
     title={collapsed ? label : ""}
   >
     <Icon className="transition-all duration-200" />
-    <span className={`${collapsed ? "hidden" : "ml-2"} transition-all duration-200`}>{label}</span>
+    <span
+      className={`${collapsed ? "hidden" : "ml-2"} transition-all duration-200`}
+    >
+      {label}
+    </span>
   </NavLink>
 );
 
@@ -61,15 +69,28 @@ const Sidebar = () => {
   };
 
   return (
-    <aside className={`bg-[#0F2D44] text-white h-auto py-4 transition-width duration-300 overflow-hidden ${collapsed ? "w-16" : "w-64"}`}>
+    <aside
+      className={`bg-[#0F2D44] text-white h-auto py-4 transition-width duration-300 overflow-hidden ${
+        collapsed ? "w-16" : "w-64"
+      }`}
+    >
       {/* Tombol menu di pojok kanan atas sidebar */}
-      <button className="text-white text-2xl px-4 font-semibold ml-auto flex items-center justify-center rounded transition-all duration-200" onClick={() => setCollapsed(!collapsed)}>
+      <button
+        className="text-white text-2xl px-4 font-semibold ml-auto flex items-center justify-center rounded transition-all duration-200"
+        onClick={() => setCollapsed(!collapsed)}
+      >
         <HiOutlineMenuAlt3 className="text-[#8c52ff]" />
       </button>
 
       <div className="flex items-center mt-4 mb-4 border-b border-gray-200 pb-5 px-4">
         <FaUser className="text-3xl" />
-        <p className={`${collapsed ? "hidden" : "ml-2"} transition-all duration-200`}>Admin</p>
+        <p
+          className={`${
+            collapsed ? "hidden" : "ml-5 text-2xl"
+          } transition-all duration-200`}
+        >
+          Admin
+        </p>
       </div>
 
       <nav className="space-y-2 px-2">
@@ -92,7 +113,7 @@ const Sidebar = () => {
         <NavItem
           to="/admin/bookings/pesawat"
           icon={RiMoneyDollarCircleFill}
-          label="Booking Pesawat"
+          label="Flight Booking"
           collapsed={collapsed}
           isActive={activeMenu === "/admin/bookings/pesawat"}
           onClick={() => handleMenuClick("/admin/bookings/pesawat")} // Menandai Profile sebagai aktif
@@ -100,7 +121,7 @@ const Sidebar = () => {
         <NavItem
           to="/admin/payment/pesawat"
           icon={RiMoneyDollarCircleFill}
-          label="Payment Pesawat"
+          label="Flight Payment"
           collapsed={collapsed}
           isActive={activeMenu === "/admin/payment/pesawat"}
           onClick={() => handleMenuClick("/admin/payment/pesawat")} // Menandai Profile sebagai aktif
@@ -108,7 +129,7 @@ const Sidebar = () => {
         <NavItem
           to="/admin/booking/hotel"
           icon={RiMoneyDollarCircleFill}
-          label="Booking Hotel"
+          label="Hotel Booking"
           collapsed={collapsed}
           isActive={activeMenu === "/admin/booking/hotel"}
           onClick={() => handleMenuClick("/admin/booking/hotel")} // Menandai Profile sebagai aktif
@@ -116,7 +137,7 @@ const Sidebar = () => {
         <NavItem
           to="/admin/payment/hotel"
           icon={RiMoneyDollarCircleFill}
-          label="Payment Hotel"
+          label="Hotel Payment"
           collapsed={collapsed}
           isActive={activeMenu === "/admin/payment/hotel"}
           onClick={() => handleMenuClick("/admin/payment/hotel")} // Menandai Profile sebagai aktif
@@ -132,7 +153,7 @@ const Sidebar = () => {
         <NavItem
           to="/admin/airlines"
           icon={GiCommercialAirplane}
-          label="Pesawat"
+          label="Airlines"
           collapsed={collapsed}
           isActive={activeMenu === "/admin/airlines"}
           onClick={() => handleMenuClick("/admin/airlines")} // Menandai Add Flight sebagai aktif
@@ -145,7 +166,13 @@ const Sidebar = () => {
           isActive={activeMenu === "/admin/add-hotel"}
           onClick={() => handleMenuClick("/admin/add-hotel")} // Menandai Add Flight sebagai aktif
         />
-        <NavItem to="#" icon={FaSignOutAlt} label="Logout" collapsed={collapsed} onClick={() => handleMenuClick("logout")} />
+        <NavItem
+          to="#"
+          icon={FaSignOutAlt}
+          label="Logout"
+          collapsed={collapsed}
+          onClick={() => handleMenuClick("logout")}
+        />
       </nav>
     </aside>
   );

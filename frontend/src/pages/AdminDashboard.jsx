@@ -15,15 +15,21 @@ const AdminDashboard = () => {
     const fetchData = async () => {
       try {
         // Fetch total users
-        const userResponse = await axios.get(`${import.meta.env.VITE_API_URL}/users`);
+        const userResponse = await axios.get(
+          `${import.meta.env.VITE_API_URL}/users`
+        );
         setUserCount(userResponse.data.length); // Assuming the response is an array of users
 
         // Fetch total flights
-        const flightResponse = await axios.get(`${import.meta.env.VITE_API_URL}/jadwal-penerbangan`);
+        const flightResponse = await axios.get(
+          `${import.meta.env.VITE_API_URL}/jadwal-penerbangan`
+        );
         setFlightCount(flightResponse.data.length); // Assuming the response is an array of flights
 
         // Fetch total hotels
-        const hotelResponse = await axios.get(`${import.meta.env.VITE_API_URL}/hotel`);
+        const hotelResponse = await axios.get(
+          `${import.meta.env.VITE_API_URL}/hotel`
+        );
         setHotelCount(hotelResponse.data.length); // Assuming the response is an array of hotels
       } catch (err) {
         setError(err.message);
