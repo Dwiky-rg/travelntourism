@@ -132,7 +132,7 @@ const BookingHotelList = () => {
           <table className="min-w-full bg-white border border-gray-300 rounded-lg">
             <thead>
               <tr className="bg-gray-100">
-                <th className="text-left px-4 py-2 border-b">Name</th>
+                <th className="text-left px-4 py-2 border-b">Full Name</th>
                 <th className="text-left px-4 py-2 border-b">Hotel Name</th>
                 <th className="text-left px-4 py-2 border-b">Location</th>
                 <th className="text-left px-4 py-2 border-b">Check-in Date</th>

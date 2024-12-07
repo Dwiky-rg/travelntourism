@@ -290,7 +290,7 @@ const HotelDetailPayment = () => {
             </div>
 
             <div className="mt-6">
-              <h3 className="text-xl font-bold">
+              <h3 className="text-lg font-bold text-blue-500">
                 Total Price: {formatPrice(totalPrice)}
               </h3>
             </div>
