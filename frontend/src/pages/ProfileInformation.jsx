@@ -57,7 +57,11 @@ const ProfileInformation = () => {
         password: "", // No confirmPassword anymore
       });
 
-      setProfileImage(userData.image ? `/images-users/${userData.image}` : "/default-avatar.png");
+      setProfileImage(
+        userData.image
+          ? `/images-users/${userData.image}`
+          : "/default-avatar.png"
+      );
     } catch (error) {
       console.error(error.message);
       navigate("/login");
@@ -147,16 +151,32 @@ const ProfileInformation = () => {
     <div className="flex min-h-screen bg-gray-100 p-6 mt-20">
       {/* Sidebar */}
       <div className="w-1/4 bg-white shadow-lg rounded-lg p-4 flex flex-col items-center relative">
-        <button onClick={handleBackClick} className="absolute top-4 left-4 text-2xl text-[#21409A] rounded-full">
+        <button
+          onClick={handleBackClick}
+          className="absolute top-4 left-4 text-2xl text-[#21409A] rounded-full"
+        >
           <FaHome />
         </button>
         <h2 className="text-2xl font-bold mb-6 mt-7">My Profile</h2>
         <div className="relative">
-          <img src={profileImage} alt="" className="w-32 h-32 rounded-full border-2 border-gray-300 mb-4 object-cover" />
-          <label htmlFor="profileImage" className="absolute bottom-4 right-2 bg-[#21409A] text-white border border-white rounded-full p-2 cursor-pointer">
+          <img
+            src={profileImage}
+            alt=""
+            className="w-32 h-32 rounded-full border-2 border-gray-300 mb-4 object-cover"
+          />
+          <label
+            htmlFor="profileImage"
+            className="absolute bottom-4 right-2 bg-[#21409A] text-white border border-white rounded-full p-2 cursor-pointer"
+          >
             <FaPencilAlt />
           </label>
-          <input type="file" id="profileImage" accept="image/*" className="hidden" onChange={handleImageChange} />
+          <input
+            type="file"
+            id="profileImage"
+            accept="image/*"
+            className="hidden"
+            onChange={handleImageChange}
+          />
         </div>
         <h2 className="text-lg font-semibold">{profile.name}</h2>
       </div>
@@ -165,31 +185,54 @@ const ProfileInformation = () => {
       <div className="w-3/4 bg-white shadow-lg rounded-lg p-6 ml-6">
         <h2 className="text-2xl font-bold mb-6">Personal Information</h2>
         <div className="space-y-4">
-          {["name", "email", "phone", "gender", "birthday", "country"].map((field) => (
-            <div key={field}>
-              <label className="block text-gray-600">{field.charAt(0).toUpperCase() + field.slice(1)}</label>
-              <input
-                type={field === "birthday" ? "date" : "text"}
-                name={field}
-                value={field === "birthday" ? (profile.birthday ? profile.birthday.split("T")[0] : "") : profile[field]}
-                onChange={handleChange}
-                className="w-full border border-gray-300 rounded-lg px-4 py-2"
-              />
-            </div>
-          ))}
+          {["name", "email", "phone", "gender", "birthday", "country"].map(
+            (field) => (
+              <div key={field}>
+                <label className="block text-gray-600">
+                  {field.charAt(0).toUpperCase() + field.slice(1)}
+                </label>
+                <input
+                  type={field === "birthday" ? "date" : "text"}
+                  name={field}
+                  value={
+                    field === "birthday"
+                      ? profile.birthday
+                        ? profile.birthday.split("T")[0]
+                        : ""
+                      : profile[field]
+                  }
+                  onChange={handleChange}
+                  className="w-full border border-gray-300 rounded-lg px-4 py-2"
+                />
+              </div>
+            )
+          )}
 
           {/* Input for Password */}
           <div className="relative">
             <label className="block text-gray-600">Password</label>
-            <input type={showPassword ? "text" : "password"} name="password" value={profile.password || ""} onChange={handleChange} className="w-full border border-gray-300 rounded-lg px-4 py-2" />
-            <button type="button" onClick={togglePasswordVisibility} className="absolute right-3 top-9 text-gray-600">
+            <input
+              type={showPassword ? "text" : "password"}
+              name="password"
+              value={profile.password || ""}
+              onChange={handleChange}
+              className="w-full border border-gray-300 rounded-lg px-4 py-2"
+            />
+            <button
+              type="button"
+              onClick={togglePasswordVisibility}
+              className="absolute right-3 top-9 text-gray-600"
+            >
               {showPassword ? <FaEyeSlash /> : <FaEye />}
             </button>
           </div>
         </div>
 
-        <button onClick={handleSaveProfile} className="mt-6 bg-[#21409A] text-white px-4 py-2 rounded-lg">
-          Save Profile
+        <button
+          onClick={handleSaveProfile}
+          className="mt-6 bg-[#21409A] text-white px-24 py-2"
+        >
+          Save
         </button>
       </div>
     </div>

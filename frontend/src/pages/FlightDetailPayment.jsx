@@ -232,7 +232,7 @@ const FlightDetailPayment = () => {
             </div>
             <div className="flex justify-between border-t pt-4 mt-4 border-gray-300">
               <span className="font-medium text-gray-600">Price:</span>
-              <span className="text-lg font-bold text-blue-500">
+              <span className="text-lg font-bold text-[#21409A]">
                 {new Intl.NumberFormat("id-ID", {
                   style: "currency",
                   currency: "IDR",
@@ -246,18 +246,36 @@ const FlightDetailPayment = () => {
           {/* Detail Penumpang */}
           <div className="bg-white rounded-lg shadow-md p-6 mb-4">
             <h2 className="text-lg font-semibold mb-6">Passenger Details</h2>
-            <div className="space-y-6">
+
+            {/* Full Name */}
+            <div className="mb-4">
+              <label className="block font-medium mb-1">Full Name</label>
+              <input
+                type="text"
+                name="name"
+                value={formData.name}
+                onChange={handleFormChange}
+                placeholder="Full Name"
+                className="w-full border rounded-lg p-2"
+              />
+            </div>
+
+            {/* Nationality, Gender, and Date of Birth */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {/* Nationality */}
               <div>
-                <label className="block font-medium mb-1">Full Name</label>
+                <label className="block font-medium mb-1">Nationality</label>
                 <input
                   type="text"
-                  name="name"
-                  value={formData.name}
+                  name="country"
+                  value={formData.country}
                   onChange={handleFormChange}
-                  placeholder="Full Name"
+                  placeholder="Country"
                   className="w-full border rounded-lg p-2"
                 />
               </div>
+
+              {/* Gender */}
               <div>
                 <label className="block font-medium mb-1">Gender</label>
                 <select
@@ -273,22 +291,14 @@ const FlightDetailPayment = () => {
                   <option value="female">Female</option>
                 </select>
               </div>
+
+              {/* Date of Birth */}
               <div>
                 <label className="block font-medium mb-1">Date of Birth</label>
                 <input
                   type="date"
                   name="birthday"
                   value={formData.birthday}
-                  onChange={handleFormChange}
-                  className="w-full border rounded-lg p-2"
-                />
-              </div>
-              <div>
-                <label className="block font-medium mb-1">Nationality</label>
-                <input
-                  type="text"
-                  name="country"
-                  value={formData.country}
                   onChange={handleFormChange}
                   className="w-full border rounded-lg p-2"
                 />
@@ -315,7 +325,9 @@ const FlightDetailPayment = () => {
                 </select>
               </div>
               <div>
-                <label className="block font-medium mb-1">Payment Proof</label>
+                <label className="block font-medium mb-1">
+                  Upload Payment Proof
+                </label>
                 <input
                   type="file"
                   accept="image/*"
@@ -328,7 +340,7 @@ const FlightDetailPayment = () => {
 
           <button
             type="submit"
-            className="bg-blue-500 text-white w-full px-6 py-2 rounded-full hover:bg-blue-600 focus:outline-none"
+            className="mt-6 bg-[#21409A] text-white w-full px-6 py-2 rounded-lg focus:outline-none"
           >
             Confirm Payment
           </button>

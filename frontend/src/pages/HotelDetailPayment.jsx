@@ -292,7 +292,7 @@ const HotelDetailPayment = () => {
               />
             </div>
             <div className="mt-6">
-              <h3 className="text-lg font-bold text-blue-500">
+              <h3 className="text-lg font-bold text-[#21409A]">
                 Total Price: {formatPrice(totalPrice)}
               </h3>
             </div>
@@ -329,9 +329,9 @@ const HotelDetailPayment = () => {
           {/* Submit Button */}
           <button
             type="submit"
-            className="mt-6 bg-blue-500 text-white w-full px-6 py-2 rounded-full hover:bg-blue-600 focus:outline-none"
+            className="mt-6 bg-[#21409A] text-white w-full px-6 py-2 rounded-lg focus:outline-none"
           >
-            Confirm Booking
+            Confirm Payment
           </button>
         </form>
       </div>

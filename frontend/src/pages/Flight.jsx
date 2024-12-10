@@ -91,7 +91,7 @@ const Flight = () => {
       {/* Search Form */}
       <div className="w-full max-w-7xl bg-white p-8 rounded-lg shadow-md mb-4">
         <div className="flex items-center mb-4">
-          <FaPlaneDeparture className="text-blue-500 text-3xl mr-2" />
+          <FaPlaneDeparture className="text-[#21409A] text-3xl mr-2" />
           <h1 className="text-2xl font-bold text-gray-800">BOOK YOUR FLIGHT</h1>
         </div>
 
@@ -175,7 +175,7 @@ const Flight = () => {
         <div className="mt-4 text-center">
           <button
             onClick={handleSearch}
-            className="bg-blue-500 text-white w-full px-6 py-2 rounded-full hover:bg-blue-600 focus:outline-none"
+            className="bg-[#21409A] text-white w-full px-6 py-2 rounded-lg focus:outline-none"
           >
             Search Flights
           </button>
@@ -241,7 +241,7 @@ const Flight = () => {
                       state: { flight },
                     })
                   }
-                  className="text-white rounded-full px-10 py-2 bg-blue-500 hover:bg-blue-600 transition duration-300"
+                  className="text-white rounded-full px-10 py-2 bg-[#21409A]"
                 >
                   Book Flight
                 </button>

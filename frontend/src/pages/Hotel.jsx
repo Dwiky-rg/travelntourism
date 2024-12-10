@@ -89,7 +89,7 @@ const Hotel = () => {
       <div className="w-full max-w-7xl bg-white p-8 rounded-lg shadow-md mb-4">
         {/* Header dengan judul dan ikon hotel */}
         <div className="flex items-center mb-4">
-          <FaHotel className="text-blue-500 text-3xl mr-2" />
+          <FaHotel className="text-[#21409A] text-3xl mr-2" />
           <h1 className="text-2xl font-bold text-gray-800">Book Your Stay</h1>
         </div>
 
@@ -100,7 +100,7 @@ const Hotel = () => {
               City
             </label>
             <div className="flex items-center border rounded-lg p-2">
-              <FaLocationDot className="mr-2 text-blue-500" />
+              <FaLocationDot className="mr-2 text-[#21409A]" />
               <input
                 type="text"
                 placeholder="Enter city"
@@ -115,7 +115,7 @@ const Hotel = () => {
               Hotel Name
             </label>
             <div className="flex items-center border rounded-lg p-2">
-              <FaLocationDot className="mr-2 text-blue-500" />
+              <FaLocationDot className="mr-2 text-[#21409A]" />
               <input
                 type="text"
                 placeholder="Enter hotel name"
@@ -131,9 +131,9 @@ const Hotel = () => {
         <div className="mt-4 flex justify-center">
           <button
             onClick={handleSearch}
-            className="bg-blue-500 text-white w-full px-6 py-2 rounded-full hover:bg-blue-600 focus:outline-none"
+            className="bg-[#21409A] text-white w-full px-6 py-2 rounded-lg focus:outline-none"
           >
-            Search
+            Search Hotel
           </button>
         </div>
       </div>
@@ -173,7 +173,7 @@ const Hotel = () => {
                     <div className="mt-4 w-full">
                       <Link
                         to={`/hotel/booking/${hotel.id}`}
-                        className="text-white rounded-full px-10 py-2 bg-blue-500 hover:bg-blue-600 transition duration-300"
+                        className="text-white rounded-full px-10 py-2 bg-[#21409A]"
                       >
                         Book Hotel
                       </Link>

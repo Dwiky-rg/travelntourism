@@ -4,13 +4,9 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { GoArrowUpRight } from "react-icons/go";
-import {
-  FaChevronLeft,
-  FaChevronRight,
-  FaTimes,
-  FaMapMarkerAlt,
-  FaPlaneDeparture,
-} from "react-icons/fa";
+import { CiCircleChevLeft, CiCircleChevRight } from "react-icons/ci";
+
+import { FaTimes, FaMapMarkerAlt, FaPlaneDeparture } from "react-icons/fa";
 
 import Card1 from "../assets/Borobudur.jpg";
 import Card2 from "../assets/prambanan.jpg";
@@ -139,10 +135,10 @@ function NextArrow(props) {
   const { onClick } = props;
   return (
     <button
-      className="absolute top-[-25px] lg:top-[-40px] right-3 lg:right-8 p-2 bg-[#FF994B] rounded-full text-white shadow-lg hover:bg-[#e98840]"
+      className="absolute top-[-25px] lg:top-[-40px] right-3 lg:right-8 text-[40px] text-[#B2B2B2] hover:scale-110 transition-transform duration-300"
       onClick={onClick}
     >
-      <FaChevronRight />
+      <CiCircleChevRight />
     </button>
   );
 }
@@ -151,10 +147,10 @@ function PrevArrow(props) {
   const { onClick } = props;
   return (
     <button
-      className="absolute top-[-25px] lg:top-[-40px] right-14 lg:right-20 p-2 bg-[#FF994B] rounded-full text-white shadow-lg hover:bg-[#e98840]"
+      className="absolute top-[-25px] lg:top-[-40px] right-14 lg:right-20 text-[40px] text-[#B2B2B2] hover:scale-110 transition-transform duration-300"
       onClick={onClick}
     >
-      <FaChevronLeft />
+      <CiCircleChevLeft />
     </button>
   );
 }
@@ -177,7 +173,7 @@ function Modal({ destination, onClose }) {
       >
         <button
           onClick={onClose}
-          className="absolute top-2 lg:top-3 right-3 text-[#FF994B] hover:text-[#e98840]"
+          className="absolute top-2 lg:top-3 right-3 text-[#876D52] hover:text-[#a58563]"
         >
           <FaTimes className="w-6 h-6" />
         </button>
@@ -194,7 +190,7 @@ function Modal({ destination, onClose }) {
           <div>
             <h2 className="text-4xl font-normal mb-1">{destination.title}</h2>
             <div className="flex items-center text-gray-600 mb-1 lg:mb-4">
-              <FaMapMarkerAlt className="mr-2 text-[#FF994B]" />
+              <FaMapMarkerAlt className="mr-2 text-[#876D52]" />
               <span>{destination.location}</span>
             </div>
             <p className="text-gray-700 text-justify lg:px-3">
@@ -204,7 +200,7 @@ function Modal({ destination, onClose }) {
 
           <button
             onClick={handleBookFlight}
-            className="mt-4 bg-[#FF994B] text-white py-2 px-4 rounded-lg hover:bg-[#e98840] flex items-center justify-center w-[200px] mx-auto"
+            className="mt-4 bg-[#876D52] text-white py-2 px-4 rounded-lg hover:bg-[#a58563] flex items-center justify-center w-[200px] mx-auto"
           >
             Book Flight
             <FaPlaneDeparture className="ml-2" />
