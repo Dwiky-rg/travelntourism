@@ -212,16 +212,18 @@ const HotelDetailPayment = () => {
 
   return (
     <section className="relative min-h-screen flex flex-col items-center bg-gray-100 text-black p-8 mt-14">
-      <div className="w-full max-w-7xl lg:p-8 rounded-lg mb-4">
+      <div className="w-full max-w-5xl">
         {/* Booking Form */}
         <div className="bg-white rounded-lg shadow-md p-6 mb-4">
-          <h2 className="text-lg font-semibold mb-6">Contact Details</h2>
+          <h2 className="text-lg font-semibold mb-6">
+            Contact Details (Booking details will be sent to)
+          </h2>
           <div className="flex space-x-4">
             <div className="flex-1">
               <label className="block font-medium mb-1">Full Name</label>
               <input
                 type="text"
-                value={userDetails?.name || "John Doe"}
+                value={userDetails?.name || "John Doe"} // Use fetched user details or placeholder
                 className="w-full border rounded-lg p-2"
                 readOnly
               />
@@ -230,16 +232,16 @@ const HotelDetailPayment = () => {
               <label className="block font-medium mb-1">Email</label>
               <input
                 type="email"
-                value={userDetails?.email || "user@example.com"}
+                value={userDetails?.email || "user@example.com"} // Use fetched email or placeholder
                 className="w-full border rounded-lg p-2"
                 readOnly
               />
             </div>
             <div className="flex-1">
-              <label className="block font-medium mb-1">Phone</label>
+              <label className="block font-medium mb-1">No. HP</label>
               <input
                 type="text"
-                value={userDetails?.phone || "081234567890"}
+                value={userDetails?.phone || "081234567890"} // Use fetched phone or placeholder
                 className="w-full border rounded-lg p-2"
                 readOnly
               />
@@ -248,8 +250,9 @@ const HotelDetailPayment = () => {
         </div>
 
         {/* Hotel and Room Selection */}
-        <form onSubmit={confirmBooking}>
-          <div className="bg-white p-6 rounded-lg shadow-md">
+        <form onSubmit={confirmBooking} className="space-y-6">
+          <div className="bg-white rounded-lg shadow-md p-6 mb-4">
+            {/* Hotel Details Section */}
             <h2 className="text-2xl font-bold">{hotel.name}</h2>
             <div className="flex items-center text-gray-500 mt-2">
               <span className="mr-1">Location:</span>
@@ -288,43 +291,48 @@ const HotelDetailPayment = () => {
                 value={checkOutDate}
               />
             </div>
-
             <div className="mt-6">
               <h3 className="text-lg font-bold text-blue-500">
                 Total Price: {formatPrice(totalPrice)}
               </h3>
             </div>
-
-            <div className="mt-6">
-              <label className="font-medium">Payment Receipt</label>
-              <input
-                type="file"
-                onChange={(e) => setPaymentReceipt(e.target.files[0])}
-                className="w-full p-2 mt-2 border rounded-lg"
-              />
-            </div>
-
-            <div className="mt-6">
-              <label className="font-medium">Bank</label>
-              <select
-                className="w-full p-2 mt-2 border rounded-lg"
-                onChange={(e) => setSelectedBank(e.target.value)}
-                value={selectedBank}
-              >
-                <option value="">Select Payment Method</option>
-                <option value="bni">BNI - 0987654321 </option>
-                <option value="bca">BCA - 1237916512</option>
-                <option value="bri">BRI - 1739754271</option>
-              </select>
-            </div>
-
-            <button
-              type="submit"
-              className="mt-6 bg-blue-500 text-white p-3 rounded-lg w-full"
-            >
-              Confirm Booking
-            </button>
           </div>
+
+          {/* Payment Method Section */}
+          <div className="bg-white rounded-lg shadow-md p-6 mb-4">
+            <h2 className="text-lg font-semibold mb-6">Payment Details</h2>
+            <div className="space-y-4">
+              <div>
+                <label className="block font-medium mb-1">Payment Method</label>
+                <select
+                  onChange={(e) => setSelectedBank(e.target.value)}
+                  value={selectedBank}
+                  className="w-full border rounded-lg p-2"
+                >
+                  <option value="">Select Payment Method</option>
+                  <option value="bni">BNI - 0987654321</option>
+                  <option value="bca">BCA - 1237916512</option>
+                  <option value="bri">BRI - 1739754271</option>
+                </select>
+              </div>
+              <div>
+                <label className="block font-medium mb-1">Payment Proof</label>
+                <input
+                  type="file"
+                  onChange={(e) => setPaymentReceipt(e.target.files[0])}
+                  className="w-full border rounded-lg p-2"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Submit Button */}
+          <button
+            type="submit"
+            className="mt-6 bg-blue-500 text-white w-full px-6 py-2 rounded-full hover:bg-blue-600 focus:outline-none"
+          >
+            Confirm Booking
+          </button>
         </form>
       </div>
     </section>

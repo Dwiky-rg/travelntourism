@@ -123,10 +123,10 @@ const FlightDetailPayment = () => {
         title: "Booking Successful!",
         text: "Your flight booking was successful.",
         icon: "success",
-        confirmButtonText: "OK",
-      });
-
-      navigate("/pesawat/histori"); // Redirect to the success page on success
+        confirmButtonText: "Go to Booking",
+      }).then(() => {
+        navigate(`/pesawat/histori`);
+      }); // Redirect to the success page on success
     } catch (error) {
       console.error("Error submitting the booking:", error);
       // Optionally show an alert or message to the user
@@ -328,7 +328,7 @@ const FlightDetailPayment = () => {
 
           <button
             type="submit"
-            className="w-full py-3 px-6 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700"
+            className="bg-blue-500 text-white w-full px-6 py-2 rounded-full hover:bg-blue-600 focus:outline-none"
           >
             Confirm Payment
           </button>
